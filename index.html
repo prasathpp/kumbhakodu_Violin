@@ -105,44 +105,43 @@
             color: #fff;
         }
 
-        /* 1. Header Section - UPDATED TO MATCH IMAGE */
+        /* 1. Header Section */
         #main-header {
-            background: #f0f0f0; /* Light grey background to match the image */
+            background: #f0f0f0; 
             padding: 1.5rem 0;
             border-bottom: 1px solid #e0e0e0;
         }
 
         #main-header .container {
             display: flex;
-            justify-content: space-between; /* Positions title left, nav right */
+            justify-content: space-between; 
             align-items: center;
         }
 
         #main-header h1 {
-            font-family: var(--font-family-headings); /* 'Lora', a serif font */
+            font-family: var(--font-family-headings);
             font-size: 2.1rem;
             font-weight: 600;
-            color: #0d2c4f; /* Dark blue-grey from image */
+            color: #0d2c4f; 
             margin: 0;
         }
         
-        /* New styles for the navigation menu */
         #main-header nav ul {
             display: flex;
             list-style: none;
-            gap: 2rem; /* Spacing between nav items */
+            gap: 2rem; 
         }
 
         #main-header nav a {
             text-decoration: none;
-            color: #5a5a5a; /* Muted grey for nav links */
+            color: #5a5a5a; 
             font-family: var(--font-family-body);
             font-size: 1rem;
             transition: color 0.2s ease-in-out;
         }
 
         #main-header nav a:hover {
-            color: var(--dark-color); /* Darken on hover */
+            color: var(--dark-color); 
         }
         
         /* 2. Main Welcome (Hero) Section */
@@ -151,7 +150,6 @@
             min-height: 80vh; 
             display: flex;
             align-items: center;
-            /* removed padding-top since header is no longer fixed */
         }
         
         .hero-content {
@@ -328,20 +326,6 @@
             margin-bottom: 0;
         }
         
-        .video-container {
-            flex: 1;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        
-        .video-container iframe {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            border: none;
-            display: block;
-        }
-        
         .demo-text {
             flex: 1;
         }
@@ -352,6 +336,83 @@
             margin-bottom: 1rem;
             color: var(--secondary-color);
         }
+
+        /* --- NEW CSS FOR THE CUSTOM VIDEO PLAYER --- */
+        .video-wrapper {
+            flex: 1; /* Make it take up space in the flex container */
+            position: relative;
+            aspect-ratio: 16 / 9;
+            cursor: pointer;
+            background-color: #000;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .video-wrapper .player-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* The most important CSS rule */
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: transparent; /* No background when paused */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            transition: opacity 0.2s ease;
+        }
+
+        /* This class is added to show the thumbnail */
+        .video-overlay.has-thumbnail {
+            background-size: cover;
+            background-position: center;
+            background-color: rgba(0,0,0,0.5); /* Darken thumbnail slightly */
+        }
+        
+        /* When the video is playing, we hide the overlay */
+        .video-overlay.hidden {
+            display: none;
+        }
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .video-wrapper:hover .play-button {
+            transform: scale(1.1);
+            background-color: rgba(204, 0, 0, 0.8);
+        }
+
+        .play-button::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            border-left: 25px solid white;
+            margin-left: 5px;
+        }
+
         
         /* 7. Praise / Testimonials Section */
         #praise {
@@ -524,7 +585,6 @@
         
         /* Responsive Design */
         @media(max-width: 768px) {
-            /* Responsive styles for the new header */
             #main-header .container {
                 flex-direction: column;
                 gap: 1rem;
@@ -578,7 +638,7 @@
 </head>
 <body>
 
-    <!-- 1. Header Section - UPDATED TO MATCH IMAGE -->
+    <!-- 1. Header Section -->
     <header id="main-header">
         <div class="container">
             <h1>Kumbhakodu School of Violin</h1>
@@ -662,87 +722,93 @@
             </div>
         </section>
 
-        <!-- 6. Class Demonstrations Section -->
+        <!-- 6. Class Demonstrations Section - UPDATED HTML STRUCTURE -->
         <section id="demos">
             <div class="container">
                 <h2 class="section-title">Class Demonstrations</h2>
                 <div class="demos-grid">
                     <!-- Video 1 -->
                     <div class="demo-item">
-                        <div class="video-container">
-                            <!-- UPDATED: Added &controls=0 to hide player controls -->
-                             <iframe src="https://www.youtube.com/embed/VIDEO_ID_6?modestbranding=1&controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <div class="video-wrapper" data-video-id="q2gOFeL6ubA">
+                             <div class="player-placeholder"></div>
+                             <div class="video-overlay has-thumbnail">
+                                 <div class="play-button"></div>
+                             </div>
                         </div>
                         <div class="demo-text">
                             <h3>Kapali Keerthanam - <br>Net la paathuko</h3>
-                            <!-- <p>A special performance by the tutor, showcasing the mastery and passion that guides our school's curriculum.</p> -->
                         </div>
                     </div>
                     <!-- Video 2 -->
                     <div class="demo-item">
-                        <div class="video-container">
-                            <!-- UPDATED: Added &controls=0 to hide player controls -->
-                            <iframe src="https://www.youtube.com/embed/63i9OSs8iSE?modestbranding=1&rel=0&fs=0&color=white&controls=0&disablekb=1" title="Saraswathi Namosthuthe Keerthanam" frameborder="0"></iframe>
-
+                        <div class="video-wrapper" data-video-id="63i9OSs8iSE">
+                             <div class="player-placeholder"></div>
+                             <div class="video-overlay has-thumbnail">
+                                 <div class="play-button"></div>
+                             </div>
                         </div>
                         <div class="demo-text">
                             <h3>Saraswathi Namosthuthe Keerthanam - <br>Theriyaadhu</h3>
-                            <!-- <p>Watch one of our dedicated students perform a classic piece after months of training. This showcases the progress you can make with structured lessons.</p> -->
                         </div>
                     </div>
                     <!-- Video 3 -->
                     <div class="demo-item">
-                        <div class="video-container">
-                            <!-- UPDATED: Added &controls=0 to hide player controls -->
-                             <iframe src="https://www.youtube.com/embed/fMS0QteE3OE?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <div class="video-wrapper" data-video-id="fMS0QteE3OE">
+                             <div class="player-placeholder"></div>
+                             <div class="video-overlay has-thumbnail">
+                                 <div class="play-button"></div>
+                             </div>
                         </div>
                         <div class="demo-text">
                             <h3>Seethama Mayamma Keerthanam - <br>Vasantha Ragam</h3>
-                            <!-- <p>A demonstration of advanced bowing and fingering techniques taught in our senior classes, focusing on expression and clarity.</p> -->
                         </div>
                     </div>
                     <!-- Video 4 -->
                     <div class="demo-item">
-                        <div class="video-container">
-                            <!-- UPDATED: Added &controls=0 to hide player controls -->
-                             <iframe src="https://www.youtube.com/embed/aVnfoCxuoJc?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <div class="video-wrapper" data-video-id="aVnfoCxuoJc">
+                             <div class="player-placeholder"></div>
+                             <div class="video-overlay has-thumbnail">
+                                 <div class="play-button"></div>
+                             </div>
                         </div>
                         <div class="demo-text">
                             <h3>Ninnukori Varnam - <br>Mohana Ragam</h3>
-                            <!-- <p>Experience the energy of our group classes in Chennai. Collective learning helps students stay motivated and learn from each other.</p> -->
                         </div>
                     </div>
                     <!-- Video 5 -->
                      <div class="demo-item">
-                        <div class="video-container">
-                            <!-- UPDATED: Added &controls=0 to hide player controls -->
-                             <iframe src="https://www.youtube.com/embed/r4zrGAygXNk?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <div class="video-wrapper" data-video-id="r4zrGAygXNk">
+                             <div class="player-placeholder"></div>
+                             <div class="video-overlay has-thumbnail">
+                                 <div class="play-button"></div>
+                             </div>
                         </div>
                         <div class="demo-text">
                             <h3>Keraya Neeranu Geetham - <br>Malahari Ragam</h3>
-                            <!-- <p>A peek into how our online classes are conducted for international students, ensuring personalized attention and clear instruction across time zones.</p> -->
                         </div>
                     </div>
                      <!-- Video 6 -->
                      <div class="demo-item">
-                        <div class="video-container">
-                            <!-- UPDATED: Added &controls=0 to hide player controls -->
-                             <iframe src="https://www.youtube.com/embed/HdW8G4ASx7E?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <div class="video-wrapper" data-video-id="HdW8G4ASx7E">
+                             <div class="player-placeholder"></div>
+                             <div class="video-overlay has-thumbnail">
+                                 <div class="play-button"></div>
+                             </div>
                         </div>
                         <div class="demo-text">
                             <h3>Shri Gananatha Geetham - <br>Malahari Ragam</h3>
-                            <!-- <p>Celebrate the milestone of a beginner student playing their very first song, a testament to our effective foundational training.</p> -->
                         </div>
                     </div>
                      <!-- Video 7 -->
                     <div class="demo-item">
-                        <div class="video-container">
-                            <!-- UPDATED: Added &controls=0 to hide player controls -->
-                             <iframe src="https://www.youtube.com/embed/knhs_oo_dCo?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <div class="video-wrapper" data-video-id="knhs_oo_dCo">
+                             <div class="player-placeholder"></div>
+                             <div class="video-overlay has-thumbnail">
+                                 <div class="play-button"></div>
+                             </div>
                         </div>
                         <div class="demo-text">
-                            <h3>Kantajumi Keerthanam - <br> </h3>
-                            <!-- <p>A special performance by the tutor, showcasing the mastery and passion that guides our school's curriculum.</p> -->
+                            <h3>Kantajumi Keerthanam</h3>
                         </div>
                     </div>
                 </div>
@@ -802,49 +868,119 @@
         <button id="cookie-accept-btn">Accept</button>
     </div>
 
+    <!-- YouTube Player API Script -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // --- Photo Gallery Carousel ---
             const slider = document.querySelector('.gallery-slider');
-            const slides = document.querySelectorAll('.gallery-slider img');
-            const prevBtn = document.querySelector('.prev-btn');
-            const nextBtn = document.querySelector('.next-btn');
+            if (slider) {
+                const slides = document.querySelectorAll('.gallery-slider img');
+                const prevBtn = document.querySelector('.prev-btn');
+                const nextBtn = document.querySelector('.next-btn');
+                let currentIndex = 0;
 
-            let currentIndex = 0;
+                function goToSlide(index) {
+                    if (!slides || slides.length === 0) return;
+                    if (index < 0) index = slides.length - 1;
+                    if (index >= slides.length) index = 0;
+                    slider.style.transform = `translateX(-${index * 100}%)`;
+                    currentIndex = index;
+                }
 
-            function goToSlide(index) {
-                if (!slides || slides.length === 0) return;
-                if (index < 0) index = slides.length - 1;
-                if (index >= slides.length) index = 0;
-                slider.style.transform = `translateX(-${index * 100}%)`;
-                currentIndex = index;
+                nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+                prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+                setInterval(() => goToSlide(currentIndex + 1), 5000);
             }
-
-            nextBtn.addEventListener('click', () => {
-                goToSlide(currentIndex + 1);
-            });
-
-            prevBtn.addEventListener('click', () => {
-                goToSlide(currentIndex - 1);
-            });
-            
-            setInterval(() => {
-                goToSlide(currentIndex + 1);
-            }, 5000);
 
             // --- Cookie Consent Banner ---
             const cookieBanner = document.getElementById('cookie-banner');
             const acceptBtn = document.getElementById('cookie-accept-btn');
 
-            if (!localStorage.getItem('cookieConsent')) {
+            if (cookieBanner && !localStorage.getItem('cookieConsent')) {
                 cookieBanner.classList.add('show');
             }
 
-            acceptBtn.addEventListener('click', () => {
-                localStorage.setItem('cookieConsent', 'true');
-                cookieBanner.classList.remove('show');
-            });
+            if (acceptBtn) {
+                acceptBtn.addEventListener('click', () => {
+                    localStorage.setItem('cookieConsent', 'true');
+                    cookieBanner.classList.remove('show');
+                });
+            }
         });
+
+        // --- NEW, UPDATED YOUTUBE PLAYER SCRIPT ---
+        
+        let players = {}; // Object to hold player instances
+
+        // This function runs when the YouTube API script is loaded and ready
+        function onYouTubeIframeAPIReady() {
+            const videoWrappers = document.querySelectorAll('.video-wrapper');
+            
+            videoWrappers.forEach((wrapper, index) => {
+                const videoId = wrapper.dataset.videoId;
+                const placeholder = wrapper.querySelector('.player-placeholder');
+                const overlay = wrapper.querySelector('.video-overlay');
+                const playerId = `youtube-player-${index}`;
+                placeholder.id = playerId;
+
+                // Set thumbnail background
+                const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+                overlay.style.backgroundImage = `url('${thumbnailUrl}')`;
+                
+                // Create the YouTube player
+                players[playerId] = new YT.Player(playerId, {
+                    videoId: videoId,
+                    playerVars: { 
+                        'controls': 0, 
+                        'rel': 0, 
+                        'modestbranding': 1, 
+                        'iv_load_policy': 3, 
+                        'disablekb': 1 
+                    },
+                    events: {
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
+
+                // Add click listener to the wrapper to control play/pause
+                wrapper.addEventListener('click', () => {
+                    const player = players[playerId];
+                    const playerState = player.getPlayerState();
+                    if (playerState === YT.PlayerState.PLAYING) {
+                        player.pauseVideo();
+                    } else {
+                        player.playVideo();
+                    }
+                });
+            });
+        }
+
+        // This function handles the logic for showing/hiding the overlay
+        function onPlayerStateChange(event) {
+            const player = event.target;
+            const wrapper = player.getIframe().closest('.video-wrapper');
+            const overlay = wrapper.querySelector('.video-overlay');
+            const videoId = wrapper.dataset.videoId;
+            const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+
+            if (event.data === YT.PlayerState.PLAYING) {
+                // Video is playing: Hide overlay, remove thumbnail class
+                overlay.classList.add('hidden');
+                overlay.classList.remove('has-thumbnail');
+            } 
+            else if (event.data === YT.PlayerState.PAUSED) {
+                // Video is paused: Show the now-transparent overlay
+                overlay.classList.remove('hidden');
+            } 
+            else if (event.data === YT.PlayerState.ENDED) {
+                // Video has ended: Reset to initial state with thumbnail
+                overlay.classList.add('has-thumbnail');
+                overlay.style.backgroundImage = `url('${thumbnailUrl}')`;
+                overlay.classList.remove('hidden');
+            }
+        }
     </script>
 
 </body>
