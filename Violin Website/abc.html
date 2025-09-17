@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Perfect Custom YouTube Player</title>
+<style>
+    body {
+        font-family: sans-serif;
+        background-color: #f0f0f0;
+    }
+    .video-wrapper {
+        position: relative;
+        width: 854px; /* Standard 16:9 aspect ratio */
+        height: 480px;
+        cursor: pointer;
+        background-color: #000;
+        overflow: hidden; /* Ensures nothing spills out */
+    }
+
+    #player {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none; /* The most important CSS rule */
+    }
+
+    /* The overlay is now TRANSPARENT by default */
+    #video-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: transparent; /* No background color when paused */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+        transition: opacity 0.2s ease;
+    }
+
+    /* This NEW class is added ONLY when we want to show the thumbnail */
+    #video-overlay.has-thumbnail {
+        background-size: cover;
+        background-position: center;
+        background-color: rgba(0,0,0,0.5); /* Darken thumbnail slightly */
+    }
+    
+    /* When the video is playing, we hide the overlay completely */
+    #video-overlay.hidden {
+        display: none;
+    }
+
+    /* A clean play button icon */
+    .play-button {
+        width: 90px;
+        height: 90px;
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid white;
+        box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    }
+    .play-button::after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 20px solid transparent;
+        border-bottom: 20px solid transparent;
+        border-left: 35px solid white;
+        margin-left: 7px; /* Nudge the triangle to be centered */
+    }
+</style>
+</head>
+<body>
+
+<h1>The Final Player</h1>
+<p>Click to play. Click to pause. The video freezes on the frame. The thumbnail only appears at the start and end.</p>
+
+<!-- 1. THE HTML STRUCTURE -->
+<div id="video-wrapper" class="video-wrapper">
+    <div id="player"></div>
+    <!-- The overlay starts with the has-thumbnail class -->
+    <div id="video-overlay" class="has-thumbnail">
+        <div class="play-button"></div>
+    </div>
+</div>
+
+<!-- 2. THE JAVASCRIPT LOGIC -->
+<script>
+    // --- Configuration ---
+    const VIDEO_ID = 'knhs_oo_dCo'; // <--- PUT YOUR YOUTUBE VIDEO ID HERE
+    const THUMBNAIL_URL = 'https://img.youtube.com/vi/DWyESfljRrU/maxresdefault.jpg'; // <--- PUT A URL TO YOUR THUMBNAIL
+
+    // Get references to HTML elements
+    const videoWrapper = document.getElementById('video-wrapper');
+    const overlay = document.getElementById('video-overlay');
+
+    // Initially set the thumbnail background image
+    overlay.style.backgroundImage = `url('${THUMBNAIL_URL}')`;
+
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    var player;
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+            videoId: VIDEO_ID,
+            playerVars: { 'controls': 0, 'rel': 0, 'modestbranding': 1, 'iv_load_policy': 3, 'disablekb': 1 },
+            events: { 'onReady': onPlayerReady, 'onStateChange': onPlayerStateChange }
+        });
+    }
+
+    function onPlayerReady(event) {
+        videoWrapper.addEventListener('click', () => {
+            const playerState = player.getPlayerState();
+            if (playerState === YT.PlayerState.PLAYING) {
+                player.pauseVideo();
+            } else {
+                player.playVideo();
+            }
+        });
+    }
+
+    // THIS IS THE NEW, IMPROVED LOGIC
+    function onPlayerStateChange(event) {
+        if (event.data === YT.PlayerState.PLAYING) {
+            // Video is playing: Hide the overlay entirely.
+            overlay.classList.add('hidden');
+            // CRITICAL: Remove the thumbnail class so it's not there when we pause.
+            overlay.classList.remove('has-thumbnail');
+        } 
+        else if (event.data === YT.PlayerState.PAUSED) {
+            // Video is paused: Show the overlay (which is now transparent).
+            overlay.classList.remove('hidden');
+        } 
+        else if (event.data === YT.PlayerState.ENDED) {
+            // Video has ended: Reset to the initial state by showing the thumbnail again.
+            overlay.classList.add('has-thumbnail');
+            overlay.style.backgroundImage = `url('${THUMBNAIL_URL}')`;
+            overlay.classList.remove('hidden');
+        }
+    }
+</script>
+
+</body>
+</html>
