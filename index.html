@@ -7,7 +7,7 @@
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     
     <!-- Font Awesome for Icons -->
@@ -639,7 +639,7 @@
         /* Responsive Design */
         @media(max-width: 768px) {
             #main-header .header-inner {
-                padding: 0 1rem; /* Less padding on mobile */
+                padding: 0 1rem;
             }
             #main-header h1 {
                 font-size: 1.5rem;
@@ -648,37 +648,29 @@
                 height: 35px;
             }
 
-            /* --- NEW: Mobile Menu Styles --- */
-            .nav-area {
-                /* On mobile, the nav-area is just a container for the button */
-                /* The actual nav is positioned absolutely */
-            }
-
+            /* --- Mobile Menu Styles --- */
             #main-nav {
-                /* Override desktop styles for a vertical dropdown */
                 position: absolute;
-                top: 100%; /* Position below the header */
+                top: 100%;
                 left: 0;
                 width: 100%;
                 background: #3a3a3a;
                 box-shadow: 0 8px 15px rgba(0,0,0,0.2);
-                
-                /* Switch to vertical animation */
-                max-width: none; /* Remove horizontal constraint */
-                max-height: 0; /* Collapse vertically */
+                max-width: none;
+                max-height: 0;
                 transition: max-height 0.4s ease-in-out;
             }
 
             #main-nav.is-open {
-                max-height: 500px; /* A large enough value to show all links */
+                max-height: 500px;
                 max-width: none;
             }
 
             #main-nav ul {
-                display: block; /* Stack links vertically */
+                display: block;
                 padding: 1rem 0;
                 text-align: center;
-                white-space: normal; /* Allow text to wrap if needed */
+                white-space: normal;
             }
             
             #main-nav ul li {
@@ -689,7 +681,6 @@
             #main-nav ul li:last-child {
                 border-bottom: none;
             }
-            /* --- End Mobile Menu Styles --- */
 
             .hero-content {
                 flex-direction: column-reverse; 
@@ -710,6 +701,12 @@
             .demo-item:nth-child(even) {
                 flex-direction: column;
                 gap: 1.5rem;
+            }
+            
+            /* --- THIS IS THE FIX --- */
+            .video-wrapper {
+                width: 100%; /* Force the video wrapper to take full width */
+                flex: none;  /* Tell it to NOT be a flexible item anymore */
             }
 
             .social-icons a {
@@ -821,7 +818,7 @@
                                  <div class="play-button"></div>
                              </div>
                         </div>
-                        <div class="demo-text"><h3>Kapali Keerthanam - <br>Net la paathuko</h3></div>
+                        <div class="demo-text"><h3>Kapali Keerthanam - <br>Mohana Ragam</h3></div>
                     </div>
                     <div class="demo-item">
                         <div class="video-wrapper" data-video-id="63i9OSs8iSE">
@@ -830,7 +827,7 @@
                                  <div class="play-button"></div>
                              </div>
                         </div>
-                        <div class="demo-text"><h3>Saraswathi Namosthuthe Keerthanam - <br>Theriyaadhu</h3></div>
+                        <div class="demo-text"><h3>Saraswathi Namosthuthe Keerthanam - <br>Saraswathi Ragam</h3></div>
                     </div>
                     <div class="demo-item">
                         <div class="video-wrapper" data-video-id="fMS0QteE3OE">
@@ -875,7 +872,7 @@
                                  <div class="play-button"></div>
                              </div>
                         </div>
-                        <div class="demo-text"><h3>Kantajumi Keerthanam</h3></div>
+                        <div class="demo-text"><h3>Kantajumi - <br>Vachaspati Ragam</h3></div>
                     </div>
                 </div>
             </div>
