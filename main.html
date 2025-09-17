@@ -105,11 +105,11 @@
             color: #fff;
         }
 
-        /* 1. Header Section */
+        /* 1. Header Section - UPDATED TO MATCH IMAGE */
         #main-header {
-            background: #f0f0f0; 
-            padding: 1.5rem 0;
-            border-bottom: 1px solid #e0e0e0;
+            background: #3a3a3a; /* Dark grey background */
+            padding: 1rem 0;
+            border-bottom: 8px solid #8B7347; /* Gold/brown bottom border */
         }
 
         #main-header .container {
@@ -119,10 +119,10 @@
         }
 
         #main-header h1 {
-            font-family: var(--font-family-headings);
-            font-size: 2.1rem;
-            font-weight: 600;
-            color: #0d2c4f; 
+            font-family: var(--font-family-brand); /* 'Great Vibes' cursive font */
+            font-size: 3.5rem; /* Increased font size */
+            font-weight: normal; /* Cursive fonts look best with normal weight */
+            color: #e0e0e0; /* Light grey text color */
             margin: 0;
         }
         
@@ -134,14 +134,14 @@
 
         #main-header nav a {
             text-decoration: none;
-            color: #5a5a5a; 
+            color: #ccc; /* Lighter color for nav links to be visible */
             font-family: var(--font-family-body);
             font-size: 1rem;
             transition: color 0.2s ease-in-out;
         }
 
         #main-header nav a:hover {
-            color: var(--dark-color); 
+            color: #fff; /* Brighten on hover */
         }
         
         /* 2. Main Welcome (Hero) Section */
@@ -339,7 +339,7 @@
 
         /* --- CSS FOR THE CUSTOM VIDEO PLAYER --- */
         .video-wrapper {
-            flex: 1;
+            flex: 1; 
             position: relative;
             aspect-ratio: 16 / 9;
             cursor: pointer;
@@ -355,7 +355,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none; /* The most important CSS rule */
+            pointer-events: none;
         }
 
         .video-overlay {
@@ -364,7 +364,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: transparent; /* No background when not showing thumbnail */
+            background-color: transparent; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -375,7 +375,7 @@
         .video-overlay.has-thumbnail {
             background-size: cover;
             background-position: center;
-            background-color: rgba(0,0,0,0.5); /* Darken thumbnail slightly */
+            background-color: rgba(0,0,0,0.5); 
         }
         
         .video-overlay.hidden {
@@ -410,7 +410,6 @@
             border-left: 25px solid white;
             margin-left: 5px;
         }
-
         
         /* 7. Praise / Testimonials Section */
         #praise {
@@ -594,7 +593,7 @@
             }
             
             #main-header h1 {
-                font-size: 1.8rem;
+                font-size: 2.5rem; /* Adjusted font size for mobile */
                 text-align: center;
             }
 
@@ -913,7 +912,6 @@
         }
 
         function onPlayerReady(event) {
-            // Hide the iframe initially
             event.target.getIframe().style.visibility = 'hidden';
         }
 
@@ -924,14 +922,13 @@
             const overlay = wrapper.querySelector('.video-overlay');
 
             if (event.data === YT.PlayerState.PLAYING) {
-                // Video is playing: Hide overlay, show iframe
                 overlay.classList.add('hidden');
                 iframe.style.visibility = 'visible';
             } 
             else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
-                // Video is paused or ended: Show thumbnail overlay, hide iframe
-                overlay.classList.add('has-thumbnail');
                 overlay.classList.remove('hidden');
+                // Only add the has-thumbnail class for the perfect look
+                overlay.classList.add('has-thumbnail');
                 iframe.style.visibility = 'hidden';
             }
         }
