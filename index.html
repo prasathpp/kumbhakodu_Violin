@@ -7,7 +7,7 @@
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     
     <!-- Font Awesome for Icons -->
@@ -714,7 +714,13 @@
                 gap: 1.5rem;
             }
             
-            
+            /* --- SOLUTION --- */
+            /* This ensures the video container has a width on mobile, */
+            /* allowing 'aspect-ratio' to calculate the height correctly. */
+            .video-wrapper {
+                width: 100%;
+            }
+            /* --- END SOLUTION --- */
 
             .social-icons a {
                 font-size: 2rem;
