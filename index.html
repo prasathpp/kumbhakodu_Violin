@@ -105,58 +105,114 @@
             color: #fff;
         }
 
-        /* 1. Header Section - UPDATED TO MATCH IMAGE */
+        /* 1. Header Section - Full Width */
         #main-header {
-            background: #3a3a3a; /* Dark grey background */
+            background: #3a3a3a;
             padding: 1rem 0;
-            border-bottom: 8px solid #8B7347; /* Gold/brown bottom border */
+            border-bottom: 8px solid #8B7347;
+            z-index: 1000;
         }
 
-        #main-header .container {
+        #main-header .header-inner {
             display: flex;
             justify-content: space-between; 
             align-items: center;
+            gap: 1rem;
+            width: 100%;
+            padding: 0 2rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-shrink: 1; 
+        }
+
+        .logo-container .logo {
+            height: 50px;
+            width: auto;
+            flex-shrink: 0;
         }
 
         #main-header h1 {
-            font-family: var(--font-family-brand); /* 'Great Vibes' cursive font */
-            font-size: 3.5rem; /* Increased font size */
-            font-weight: normal; /* Cursive fonts look best with normal weight */
-            color: #e0e0e0; /* Light grey text color */
+            font-family: var(--font-family-brand);
+            font-size: 3rem; 
+            font-weight: normal;
+            color: #e0e0e0;
             margin: 0;
+            white-space: nowrap;
         }
         
-        #main-header nav ul {
+        .nav-area {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        
+        #main-nav {
+            overflow: hidden;
+            max-width: 0;
+            transition: max-width 0.5s ease-in-out;
+        }
+
+        #main-nav.is-open {
+            max-width: 600px;
+        }
+
+        #main-nav ul {
             display: flex;
             list-style: none;
             gap: 2rem; 
+            padding-right: 2rem;
+            white-space: nowrap;
         }
 
-        #main-header nav a {
+        #main-nav a {
             text-decoration: none;
-            color: #ccc; /* Lighter color for nav links to be visible */
+            color: #ccc;
             font-family: var(--font-family-body);
             font-size: 1rem;
             transition: color 0.2s ease-in-out;
         }
 
-        #main-header nav a:hover {
-            color: #fff; /* Brighten on hover */
+        #main-nav a:hover {
+            color: #fff;
         }
         
-        /* 2. Main Welcome (Hero) Section */
+        #menu-toggle {
+            background: none;
+            border: none;
+            color: #ccc;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.2s ease-in-out;
+            flex-shrink: 0;
+        }
+        #menu-toggle:hover {
+            color: #fff;
+        }
+        
+        /* 2. Main Welcome (Hero) Section - UPDATED */
         #hero {
             background-color: var(--light-color); 
             min-height: 80vh; 
-            display: flex;
+            display: flex; /* Using flex to help center content vertically */
             align-items: center;
+            padding: 4rem 2rem; /* Add padding for smaller screens */
         }
         
+        /* This container is now centered and has a max-width */
         .hero-content {
             display: flex;
-            align-items: center;
+            align-items: center; /* This handles the vertical "in the same line" alignment */
             justify-content: space-between;
             gap: 2rem;
+            
+            /* --- KEY CHANGES HERE --- */
+            max-width: 1100px; /* Limits the width to create side padding */
+            margin: 0 auto; /* Centers the container horizontally */
+            width: 100%; /* Ensures it's responsive */
         }
         
         .hero-text {
@@ -193,6 +249,8 @@
             border-radius: 15px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
+        
+        /* --- [The rest of your CSS is the same] --- */
         
         /* 3. About Us Section */
         #about {
@@ -582,25 +640,20 @@
         
         /* Responsive Design */
         @media(max-width: 768px) {
-            #main-header .container {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            #main-header nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 0.5rem 1.5rem;
-            }
-            
             #main-header h1 {
-                font-size: 2.5rem; /* Adjusted font size for mobile */
-                text-align: center;
+                font-size: 1.5rem;
+            }
+             .logo-container .logo {
+                height: 35px;
+            }
+            #main-nav ul {
+                gap: 1rem;
+                padding-right: 1rem;
+            }
+            #main-nav a {
+                font-size: 0.9rem;
             }
 
-            #hero {
-                min-height: auto;
-                padding: 4rem 0;
-            }
             .hero-content {
                 flex-direction: column-reverse; 
                 text-align: center;
@@ -634,43 +687,50 @@
     </style>
 </head>
 <body>
-
-    <!-- Header and other sections remain the same -->
     <header id="main-header">
-        <div class="container">
-            <h1>Kumbhakodu School of Violin</h1>
-            <nav>
-                <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#tutor">Tutor</a></li>
-                    <li><a href="#demos">Demos</a></li>
-                    <li><a href="#praise">Praise</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+        <!-- We use a different class here so the container rules don't apply -->
+        <div class="header-inner">
+            <div class="logo-container">
+                <img src="https://i.ibb.co/Ld35Pst/violin-logo-white.png" alt="Violin Logo" class="logo">
+                <h1>Kumbhakodu School of Violin</h1>
+            </div>
+            <div class="nav-area">
+                <nav id="main-nav">
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#tutor">Tutor</a></li>
+                        <li><a href="#demos">Demos</a></li>
+                        <li><a href="#praise">Praise</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <button id="menu-toggle" aria-label="Open Navigation Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </div>
     </header>
 
     <main>
         <section id="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <h1>Explore Your Musical Journey with us</h1>
-                        <p>Join our violin classes to master your skills today!</p>
-                        <div class="buttons">
-                            <a href="mailto:rajeshkrishnan81@gmail.com" class="btn btn-primary">Enroll in Classes</a>
-                            <a href="#about" class="btn btn-secondary">Learn More</a>
-                        </div>
+            <!-- We removed the .hero-inner div as it's not needed anymore -->
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Explore Your Musical Journey with us</h1>
+                    <p>Join our violin classes to master your skills today!</p>
+                    <div class="buttons">
+                        <a href="mailto:rajeshkrishnan81@gmail.com" class="btn btn-primary">Enroll in Classes</a>
+                        <a href="#about" class="btn btn-secondary">Learn More</a>
                     </div>
-                    <div class="hero-image">
-                        <img src="https://i.ibb.co/hK5XvK1/tutor-photo.png" alt="Tutor with a violin">
-                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://i.ibb.co/hK5XvK1/tutor-photo.png" alt="Tutor with a violin">
                 </div>
             </div>
         </section>
 
+        <!-- The rest of the content remains the same -->
         <section id="about">
             <div class="container">
                 <h2 class="section-title">About Kumbhakodu School</h2>
@@ -817,18 +877,16 @@
                 <h2 class="section-title">Follow us on</h2>
                 <div class="social-icons">
                     <a href="https://www.facebook.com/share/1GJKzF67Ao/?mibextid=wwXIfr" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                    <a href="https://www.instagram.com/rajeshkumbhakodu?igsh=MXE3YjMzNTN6eHg2bw==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/rajeshkumbhakodu?igsh=MXE3YjMzNTN6eHg2bw==" target="_blank"aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="https://www.youtube.com/UCycmHkSljaKmosGunu6AKjg" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
         </section>
     </main>
-
     <footer>
         <p>Copyright &copy; 2025 Kumbhakodu School of Violin - All Rights Reserved.</p>
         <p>Powered by Ajay</p>
     </footer>
-
     <div id="cookie-banner">
         <p>This website uses cookies to ensure you get the best experience on our website.</p>
         <button id="cookie-accept-btn">Accept</button>
@@ -838,6 +896,17 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // --- NEW: Horizontal Sliding Navigation Menu ---
+            const menuToggle = document.getElementById('menu-toggle');
+            const mainNav = document.getElementById('main-nav');
+
+            if (menuToggle && mainNav) {
+                menuToggle.addEventListener('click', () => {
+                    mainNav.classList.toggle('is-open');
+                });
+            }
+
+            // --- Existing Gallery Slider Script ---
             const slider = document.querySelector('.gallery-slider');
             if (slider) {
                 const slides = document.querySelectorAll('.gallery-slider img');
@@ -856,6 +925,7 @@
                 setInterval(() => goToSlide(currentIndex + 1), 5000);
             }
 
+            // --- Existing Cookie Banner Script ---
             const cookieBanner = document.getElementById('cookie-banner');
             const acceptBtn = document.getElementById('cookie-accept-btn');
             if (cookieBanner && !localStorage.getItem('cookieConsent')) {
@@ -927,12 +997,10 @@
             } 
             else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
                 overlay.classList.remove('hidden');
-                // Only add the has-thumbnail class for the perfect look
                 overlay.classList.add('has-thumbnail');
                 iframe.style.visibility = 'hidden';
             }
         }
     </script>
-
 </body>
 </html>
