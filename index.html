@@ -105,12 +105,13 @@
             color: #fff;
         }
 
-        /* 1. Header Section - Full Width */
+        /* 1. Header Section - Desktop Styles */
         #main-header {
             background: #3a3a3a;
             padding: 1rem 0;
             border-bottom: 8px solid #8B7347;
             z-index: 1000;
+            position: relative; /* Crucial for anchoring the mobile menu */
         }
 
         #main-header .header-inner {
@@ -193,26 +194,23 @@
             color: #fff;
         }
         
-        /* 2. Main Welcome (Hero) Section - UPDATED */
+        /* 2. Main Welcome (Hero) Section */
         #hero {
             background-color: var(--light-color); 
             min-height: 80vh; 
-            display: flex; /* Using flex to help center content vertically */
+            display: flex;
             align-items: center;
-            padding: 4rem 2rem; /* Add padding for smaller screens */
+            padding: 4rem 2rem;
         }
         
-        /* This container is now centered and has a max-width */
         .hero-content {
             display: flex;
-            align-items: center; /* This handles the vertical "in the same line" alignment */
+            align-items: center;
             justify-content: space-between;
             gap: 2rem;
-            
-            /* --- KEY CHANGES HERE --- */
-            max-width: 1100px; /* Limits the width to create side padding */
-            margin: 0 auto; /* Centers the container horizontally */
-            width: 100%; /* Ensures it's responsive */
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
         }
         
         .hero-text {
@@ -250,7 +248,7 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
         
-        /* --- [The rest of your CSS is the same] --- */
+        /* --- [The rest of your CSS is the same down to the responsive section] --- */
         
         /* 3. About Us Section */
         #about {
@@ -640,19 +638,58 @@
         
         /* Responsive Design */
         @media(max-width: 768px) {
+            #main-header .header-inner {
+                padding: 0 1rem; /* Less padding on mobile */
+            }
             #main-header h1 {
                 font-size: 1.5rem;
             }
-             .logo-container .logo {
+            .logo-container .logo {
                 height: 35px;
             }
+
+            /* --- NEW: Mobile Menu Styles --- */
+            .nav-area {
+                /* On mobile, the nav-area is just a container for the button */
+                /* The actual nav is positioned absolutely */
+            }
+
+            #main-nav {
+                /* Override desktop styles for a vertical dropdown */
+                position: absolute;
+                top: 100%; /* Position below the header */
+                left: 0;
+                width: 100%;
+                background: #3a3a3a;
+                box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+                
+                /* Switch to vertical animation */
+                max-width: none; /* Remove horizontal constraint */
+                max-height: 0; /* Collapse vertically */
+                transition: max-height 0.4s ease-in-out;
+            }
+
+            #main-nav.is-open {
+                max-height: 500px; /* A large enough value to show all links */
+                max-width: none;
+            }
+
             #main-nav ul {
-                gap: 1rem;
-                padding-right: 1rem;
+                display: block; /* Stack links vertically */
+                padding: 1rem 0;
+                text-align: center;
+                white-space: normal; /* Allow text to wrap if needed */
             }
-            #main-nav a {
-                font-size: 0.9rem;
+            
+            #main-nav ul li {
+                padding: 0.75rem 1rem;
+                border-bottom: 1px solid #555;
             }
+            
+            #main-nav ul li:last-child {
+                border-bottom: none;
+            }
+            /* --- End Mobile Menu Styles --- */
 
             .hero-content {
                 flex-direction: column-reverse; 
@@ -688,7 +725,6 @@
 </head>
 <body>
     <header id="main-header">
-        <!-- We use a different class here so the container rules don't apply -->
         <div class="header-inner">
             <div class="logo-container">
                 <img src="https://i.ibb.co/Ld35Pst/violin-logo-white.png" alt="Violin Logo" class="logo">
@@ -714,7 +750,6 @@
 
     <main>
         <section id="hero">
-            <!-- We removed the .hero-inner div as it's not needed anymore -->
             <div class="hero-content">
                 <div class="hero-text">
                     <h1>Explore Your Musical Journey with us</h1>
@@ -896,7 +931,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // --- NEW: Horizontal Sliding Navigation Menu ---
+            // --- Horizontal/Vertical Sliding Navigation Menu ---
             const menuToggle = document.getElementById('menu-toggle');
             const mainNav = document.getElementById('main-nav');
 
