@@ -50,7 +50,8 @@
             max-width: 1100px;
             margin: auto;
             overflow: hidden;
-            padding: 0 5rem;
+            /* OPTIMIZATION: Changed padding to be more responsive. Base is now 2rem. */
+            padding: 0 2rem;
         }
 
         section {
@@ -111,11 +112,9 @@
         /* --- 1. Header Section --- */
         #main-header {
             background: #fff; 
-            /* padding: 1rem 0; */
             border-bottom: 4px solid var(--secondary-color);
             z-index: 1000;
             position: relative;
-            /* position: fixed; */
             box-shadow: 0 2px 10px rgba(0,0,0,0.08); 
         }
         
@@ -136,12 +135,12 @@
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: 1.5rem; /* OPTIMIZATION: Reduced gap slightly */
             flex-shrink: 1; 
         }
 
         .logo-container .logo {
-            height: 100px;
+            height: 80px; /* OPTIMIZATION: Slightly smaller base size */
             width: auto;
             flex-shrink: 0;
             padding: 6px 0 0 0;
@@ -149,7 +148,7 @@
 
         #main-header h1 {
             font-family: var(--font-family-brand);
-            font-size: 3rem; 
+            font-size: 2.5rem; /* OPTIMIZATION: Adjusted base size */
             font-weight: normal;
             color: var(--dark-color); 
             margin: 0;
@@ -161,14 +160,9 @@
             justify-content: flex-end;
         }
         
+        /* OPTIMIZATION: Hide nav on desktop initially, show via media query */
         #main-nav {
-            overflow: hidden;
-            max-width: 0;
-            transition: max-width 0.5s ease-in-out;
-        }
-
-        #main-nav.is-open {
-            max-width: 600px;
+           display: none;
         }
         
         #main-nav ul {
@@ -186,6 +180,8 @@
             font-size: 1rem;
             font-weight: 500;
             transition: color 0.2s ease-in-out;
+            padding: 0.5rem 0; /* OPTIMIZATION: Add padding for better mobile touch targets */
+            display: block; /* OPTIMIZATION: Make the whole area clickable */
         }
 
         #main-nav a:hover {
@@ -220,18 +216,19 @@
         
         .hero-content {
             display: flex;
+            flex-direction: column-reverse; /* OPTIMIZATION: Mobile-first approach */
             align-items: center;
-            justify-content: space-between;
+            text-align: center;
             gap: 2rem;
             max-width: 1100px;
             margin: 0 auto;
             width: 100%;
         }
         
-        .hero-text { flex: 1; max-width: 50%; }
+        .hero-text { flex: 1; max-width: 100%; }
 
         #hero h1 {
-            font-size: 3rem;
+            font-size: 2.5rem; /* OPTIMIZATION: Mobile-first font size */
             margin-bottom: 1rem;
             font-family: var(--font-family-headings);
             color: #fff;
@@ -239,7 +236,7 @@
         }
 
         #hero p {
-            font-size: 1.2rem;
+            font-size: 1.1rem; /* OPTIMIZATION: Mobile-first font size */
             margin-bottom: 2rem;
             color: #f0f0f0;
         }
@@ -247,7 +244,7 @@
         #hero .highlight {
             color: var(--secondary-color);
             font-family: var(--font-family-brand);
-            font-size: 4.5rem;
+            font-size: 4rem; /* OPTIMIZATION: Mobile-first font size */
         }
         
         #hero .btn-primary {
@@ -266,7 +263,7 @@
         
         #hero .buttons a { margin: 0.5rem 0.5rem 0.5rem 0; }
         
-        .hero-image { flex: 1; max-width: 45%; text-align: center; }
+        .hero-image { flex: 1; max-width: 80%; } /* OPTIMIZATION: Control size on mobile */
 
         .hero-image img {
             max-width: 100%;
@@ -325,8 +322,9 @@
 
         .galleries-wrapper {
             display: flex;
-            gap: 10rem; 
-            align-items: flex-start;
+            flex-direction: column; /* OPTIMIZATION: Mobile-first */
+            gap: 3rem; /* OPTIMIZATION: Mobile-first gap */
+            align-items: stretch; /* OPTIMIZATION: Ensures items stretch full width */
         }
 
         .gallery-item {
@@ -364,7 +362,7 @@
             background-color: transparent;
         }
         
-        /* --- UPDATED: Universal Carousel Styles --- */
+        /* --- Universal Carousel Styles --- */
         .carousel-container {
             position: relative;
         }
@@ -373,9 +371,9 @@
             position: relative;
             margin: auto;
             overflow: hidden;
-            -webkit-user-select: none; /* Safari */
-            -ms-user-select: none; /* IE 10+ */
-            user-select: none; /* Standard */
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
         
         .carousel-track {
@@ -389,20 +387,21 @@
 
         .carousel-slide {
             flex-shrink: 0;
-            width: 100%; /* Default for mobile */
-            padding: 0 10px; /* Gutter space between slides */
+            width: 100%;
+            padding: 0 10px;
             box-sizing: border-box;
         }
 
         .carousel-nav {
+            /* OPTIMIZATION: Hide nav by default, show on larger screens */
+            display: none;
             position: absolute;
             top: 50%;
             left: 0;
             width: 100%;
-            display: flex;
             justify-content: space-between;
             transform: translateY(-50%);
-            pointer-events: none; /* Allow clicks to pass through */
+            pointer-events: none;
         }
 
         .carousel-nav button {
@@ -418,7 +417,7 @@
             align-items: center;
             justify-content: center;
             pointer-events: all;
-            position: absolute; /* Position buttons within the nav container */
+            position: absolute;
             top: 50%;
             opacity: 0.9;
             transition: all 0.3s ease;
@@ -427,27 +426,22 @@
         
         .carousel-nav .prev-btn {
             left: 0;
-            transform: translate(-120%, -50%); /* Move left and vertically center */
+            transform: translate(-120%, -50%);
         }
         .carousel-nav .next-btn {
             right: 0;
-            transform: translate(120%, -50%); /* Move right and vertically center */
+            transform: translate(120%, -50%);
         }
 
         .carousel-nav button:hover {
             opacity: 1;
             background-color: #600018;
-            transform: scale(1.1) translate(var(--translateX, -120%), -50%); /* Maintain position on scale */
+            transform: scale(1.1) translate(var(--translateX, -120%), -50%);
         }
         .carousel-nav .next-btn:hover {
             --translateX: 120%;
         }
         
-        /* Hide buttons on mobile where there is no space */
-        @media(max-width: 500px) {
-            .carousel-nav { display: none; }
-        }
-
         .carousel-nav button.is-hidden {
             opacity: 0;
             pointer-events: none;
@@ -462,9 +456,9 @@
         }
         #gallery .carousel-slide {
             padding: 0;
-            display: flex; /* ADD THIS: Make it a flex container */
-            align-items: center; /* ADD THIS: Vertically center the image */
-            justify-content: center; /* No gutter for single-image slides */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         #gallery .carousel-slide img {
             width: 100%;
@@ -473,7 +467,7 @@
             display: block;
         }
         #gallery .carousel-nav button {
-             background: #800020; /* Different style for gallery */
+             background: #800020;
              color: white;
         }
         #gallery .carousel-nav button:hover {
@@ -482,7 +476,7 @@
 
         /* Demo Carousel Specific Styles */
         #demos .carousel-slide {
-            flex-basis: 100%; /* Mobile first */
+            flex-basis: 100%;
         }
         
         .demo-caption {
@@ -560,8 +554,10 @@
         
         .testimonials-grid {
             display: flex;
+            flex-direction: column; /* OPTIMIZATION: Mobile-first */
             justify-content: center;
-            gap: 2.5rem; 
+            align-items: center; /* OPTIMIZATION: Center cards on mobile */
+            gap: 1.5rem; /* OPTIMIZATION: Reduced gap for mobile */
             flex-wrap: wrap;
         }
 
@@ -573,6 +569,7 @@
             text-align: center;
             flex: 1 1 300px;
             max-width: 350px;
+            width: 100%; /* OPTIMIZATION: Ensure it takes available width */
         }
 
         .testimonial-card img {
@@ -644,7 +641,8 @@
 
         .social-icons a {
             color: white; font-size: 2.5rem;
-            margin: 0 1.5rem; transition: color 0.3s;
+            margin: 0 1rem; /* OPTIMIZATION: Reduced margin for mobile */
+            transition: color 0.3s;
         }
 
         .social-icons a:hover { color: var(--secondary-color); }
@@ -669,7 +667,9 @@
             color: white; padding: 1rem;
             text-align: center; z-index: 2000;
             transition: bottom 0.5s ease-in-out;
-            display: flex; justify-content: center;
+            display: flex; 
+            flex-direction: column; /* OPTIMIZATION: Mobile-first stacking */
+            justify-content: center;
             align-items: center; gap: 1rem;
         }
         
@@ -682,35 +682,122 @@
             border-radius: 5px; cursor: pointer;
         }
         
-        /* --- Responsive Design --- */
-        @media(min-width: 768px) {
+        /* --- OPTIMIZATION: Responsive Design --- */
+
+        /* Small devices (phones, 600px and up) */
+        @media(min-width: 600px) {
             #demos .carousel-slide {
                 flex-basis: 50%;
             }
+            .hero-image { max-width: 60%; }
         }
-        
-        @media(min-width: 1024px) {
-            #demos .carousel-slide {
-                flex-basis: 33.333%;
+
+        /* Medium devices (tablets, 768px and up) */
+        @media(min-width: 768px) {
+            .container {
+                padding: 0 3rem; /* OPTIMIZATION: Increase padding for tablets */
+            }
+            
+            section {
+                padding: 3rem 0; /* OPTIMIZATION: Slightly reduce padding */
+            }
+
+            .section-title { font-size: 2.2rem; }
+
+            /* --- Header --- */
+            #menu-toggle {
+                display: none; /* OPTIMIZATION: Hide hamburger on tablets and up */
+            }
+
+            #main-nav {
+                display: block; /* OPTIMIZATION: Show nav menu */
+            }
+
+            #main-nav ul li a { display: inline-block; } /* Revert block display */
+            
+            /* --- Hero --- */
+            .hero-content {
+                flex-direction: row; /* OPTIMIZATION: Side-by-side layout */
+                align-items: center;
+                text-align: left;
+            }
+            .hero-text, .hero-image { max-width: 50%; }
+            #hero h1 { font-size: 3rem; }
+            #hero p { font-size: 1.2rem; }
+
+            /* --- Gallery --- */
+            .galleries-wrapper {
+                flex-direction: row; /* OPTIMIZATION: Side-by-side on tablets */
+                gap: 4rem;
+            }
+            
+            /* --- Testimonials --- */
+            .testimonials-grid {
+                flex-direction: row; /* OPTIMIZATION: Side-by-side on tablets */
+                justify-content: center;
+                gap: 2rem;
+            }
+
+            /* --- Cookie Banner --- */
+            #cookie-banner {
+                flex-direction: row;
             }
         }
         
-        @media(max-width: 768px) {
-            #main-header .header-inner { padding: 0 1rem; }
-            #main-header h1 { font-size: 1.5rem; }
-            .logo-container .logo { height: 45px; }
+        /* Large devices (laptops/desktops, 992px and up) - NEW BREAKPOINT */
+        @media(min-width: 992px) {
+            .container {
+                padding: 0 4rem; /* OPTIMIZATION: Restore larger padding */
+            }
+            
+            #main-header h1 {
+                font-size: 2.8rem;
+            }
+            .logo-container .logo {
+                height: 90px;
+            }
+
+            #demos .carousel-slide {
+                flex-basis: 33.333%;
+            }
+             .carousel-nav {
+                display: flex; /* OPTIMIZATION: Show nav buttons only on larger screens */
+            }
+            .galleries-wrapper {
+                 gap: 6rem; /* Increase gap for larger screens */
+            }
+        }
+
+        /* Extra large devices (large desktops, 1200px and up) */
+        @media(min-width: 1200px) {
+            #main-header h1 {
+                font-size: 3rem;
+            }
+            .galleries-wrapper {
+                 gap: 10rem; /* Restore original large gap for very wide screens */
+            }
+        }
+        
+        /* OPTIMIZATION: Mobile menu override styles */
+        @media(max-width: 767px) {
+            #main-header .header-inner { padding: 0.5rem 1rem; }
+            #main-header h1 { font-size: 1.8rem; white-space: normal; line-height: 1.2; }
+            .logo-container .logo { height: 50px; }
+            .logo-container { gap: 1rem; }
 
             /* Mobile Menu Styles */
             #main-nav {
+                display: block; /* Make it visible for transitions */
                 position: absolute; top: 100%;
                 left: 0; width: 100%;
                 background: #fff;
                 box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-                max-width: none; max-height: 0;
+                max-height: 0;
+                overflow: hidden;
                 transition: max-height 0.4s ease-in-out;
             }
 
-            #main-nav.is-open { max-height: 500px; max-width: none; }
+            #main-nav.is-open { max-height: 500px; }
 
             #main-nav ul {
                 display: block; padding: 1rem 0;
@@ -718,30 +805,13 @@
             }
             
             #main-nav ul li {
-                padding: 0.75rem 1rem;
+                padding: 0.25rem 1rem;
                 border-bottom: 1px solid #eee;
             }
             
             #main-nav ul li:last-child { border-bottom: none; }
-
-            .hero-content {
-                flex-direction: column-reverse; 
-                text-align: center;
-            }
-            .hero-text, .hero-image { max-width: 100%; }
-            #hero h1 { font-size: 2.5rem; }
-            
-            .galleries-wrapper {
-                flex-direction: column;
-                gap: 3rem;
-            }
-
-            .section-title { font-size: 2rem; }
-            
-            .testimonials-grid { flex-direction: column; gap: 1.5rem; }
-            .social-icons a { font-size: 2rem; margin: 0 1rem; }
-            #cookie-banner { flex-direction: column; }
         }
+
     </style>
 </head>
 <body>
@@ -766,7 +836,7 @@
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </nav>
-                <button id="menu-toggle" aria-label="Open Navigation Menu">
+                <button id="menu-toggle" aria-label="Open Navigation Menu" aria-controls="main-nav" aria-expanded="false">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -896,8 +966,8 @@
                     <div class="carousel-wrapper">
                         <div class="carousel-track">
                             <div class="carousel-slide">
-                                <div class="video-wrapper player-placeholder">
-                                    <iframe src="https://www.youtube.com/embed/3vYHVVQgQV0?autoplay=1&modestbranding=1&rel=0&fs=0&controls=0&disablekb=1" 
+                                <div class="video-wrapper"> <!-- REMOVED placeholder class -->
+                                    <iframe src="https://www.youtube.com/embed/3vYHVVQgQV0?enablejsapi=1&modestbranding=1&rel=0&controls=0&disablekb=1" 
                                     width="560" height="315" title="Kapali | Sri Papanasam Sivan | Rajesh Kumbhakodu" frameborder="0"></iframe>
                                 </div>
                                 <div class="demo-caption">Kapali Keerthanam<br>Mohana Ragam</div>
@@ -1016,7 +1086,8 @@
             const mainNav = document.getElementById('main-nav');
             if (menuToggle && mainNav) {
                 menuToggle.addEventListener('click', () => {
-                    mainNav.classList.toggle('is-open');
+                    const isOpen = mainNav.classList.toggle('is-open');
+                    menuToggle.setAttribute('aria-expanded', isOpen);
                 });
             }
 
@@ -1069,28 +1140,41 @@
                     cancelAnimationFrame(animationID);
                     
                     const movedBy = currentTranslate - prevTranslate;
-                    const slidesPerPage = getSlidesPerPage();
-                    const pageCount = Math.ceil(slides.length / slidesPerPage);
-                    
-                    if (movedBy < -100 && currentIndex < pageCount - 1) {
-                         goToNextPage();
-                    } else if (movedBy > 100 && currentIndex > 0) {
-                        goToPrevPage();
+                    const slideWidth = slides[0].getBoundingClientRect().width;
+
+                    if (movedBy < -50 && currentIndex < slides.length - 1) { // Swipe sensitivity reduced
+                         goToNextSlide();
+                    } else if (movedBy > 50 && currentIndex > 0) {
+                        goToPrevSlide();
                     } else {
                         snapToPosition();
                     }
                     track.classList.remove('is-dragging');
                 };
 
-                const updateDimensions = () => {
-                    const slideWidth = slides[0].getBoundingClientRect().width;
-                    const slidesPerPage = getSlidesPerPage();
-                    
-                    currentIndex = Math.round(-prevTranslate / (slideWidth * slidesPerPage));
-                    if(isNaN(currentIndex)) currentIndex = 0;
-                    
+                 const updateDimensions = () => {
                     snapToPosition();
                     updateNavButtons();
+                };
+
+                // OPTIMIZATION: Simplified carousel logic to be per-slide, not per-page for more robust behavior on resize.
+                const goToNextSlide = () => {
+                     const slidesPerPage = getSlidesPerPage();
+                     const maxIndex = slides.length - slidesPerPage;
+                     if (currentIndex < maxIndex) {
+                        currentIndex++;
+                        snapToPosition();
+                     } else {
+                        currentIndex = maxIndex;
+                        snapToPosition();
+                     }
+                };
+
+                const goToPrevSlide = () => {
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                        snapToPosition();
+                    }
                 };
 
                 const getSlidesPerPage = () => {
@@ -1100,28 +1184,18 @@
                      return slideWidth > 0 ? Math.round(carouselWidth / slideWidth) : 1;
                 };
 
-                const getPageCount = () => {
-                    return Math.ceil(slides.length / getSlidesPerPage());
-                };
-
-                const goToNextPage = () => {
-                    if (currentIndex < getPageCount() - 1) {
-                        currentIndex++;
-                        snapToPosition();
-                    }
-                };
-
-                const goToPrevPage = () => {
-                    if (currentIndex > 0) {
-                        currentIndex--;
-                        snapToPosition();
-                    }
-                };
-
                 const snapToPosition = () => {
                     const slideWidth = slides[0].getBoundingClientRect().width;
                     const slidesPerPage = getSlidesPerPage();
-                    currentTranslate = currentIndex * -slideWidth * slidesPerPage;
+                    const maxIndex = slides.length - slidesPerPage;
+                    if (currentIndex > maxIndex) {
+                        currentIndex = maxIndex;
+                    }
+                    if (currentIndex < 0) {
+                        currentIndex = 0;
+                    }
+
+                    currentTranslate = currentIndex * -slideWidth;
                     prevTranslate = currentTranslate;
                     
                     if (carouselContainer.closest('#demos')) {
@@ -1135,8 +1209,9 @@
                 const updateNavButtons = () => {
                     if(!prevButton || !nextButton) return;
                     prevButton.classList.toggle('is-hidden', currentIndex === 0);
-                    const pageCount = getPageCount();
-                    nextButton.classList.toggle('is-hidden', currentIndex === pageCount - 1 || pageCount <= 1);
+                    const slidesPerPage = getSlidesPerPage();
+                    const isLastSlideVisible = currentIndex >= slides.length - slidesPerPage;
+                    nextButton.classList.toggle('is-hidden', isLastSlideVisible);
                 };
 
                 track.addEventListener('touchstart', touchStart);
@@ -1149,18 +1224,15 @@
                 track.addEventListener('dragstart', (e) => e.preventDefault());
 
 
-                if (nextButton) nextButton.addEventListener('click', goToNextPage);
-                if (prevButton) prevButton.addEventListener('click', goToPrevPage);
+                if (nextButton) nextButton.addEventListener('click', goToNextSlide);
+                if (prevButton) prevButton.addEventListener('click', goToPrevSlide);
 
                 window.addEventListener('resize', updateDimensions);
-                // Use a small delay for initial setup to ensure layout is stable
                 setTimeout(updateDimensions, 100);
             };
 
-            // Initialize all carousels on the page
             document.querySelectorAll('.carousel-container').forEach(initCarousel);
             
-            // --- Cookie Banner ---
             const cookieBanner = document.getElementById('cookie-banner');
             if (cookieBanner) {
                 const acceptBtn = document.getElementById('cookie-accept-btn');
@@ -1179,7 +1251,22 @@
         // --- YouTube Player Logic ---
         let players = {};
 
+        // Added this to handle the first non-lazy video
+        function setupFirstVideo() {
+            const firstIframe = document.querySelector('#demos iframe');
+            if(firstIframe && firstIframe.src.includes('youtube.com')) {
+                players['youtube-player-first'] = new YT.Player(firstIframe, {
+                    events: {
+                        'onStateChange': (event) => {
+                             // This is just to allow it to be controlled by pauseAllYouTubeVideos
+                        }
+                    }
+                });
+            }
+        }
+
         function onYouTubeIframeAPIReady() {
+            setupFirstVideo(); // Setup the first video
             const videoWrappers = document.querySelectorAll('.video-wrapper[data-video-id]');
             videoWrappers.forEach((wrapper, index) => {
                 const videoId = wrapper.dataset.videoId;
@@ -1191,28 +1278,31 @@
                 const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
                 if(overlay) overlay.style.backgroundImage = `url('${thumbnailUrl}')`;
                 
-                players[playerId] = new YT.Player(playerId, {
-                    videoId: videoId,
-                    playerVars: { 'controls': 0, 'rel': 0, 'modestbranding': 1, 'iv_load_policy': 3, 'disablekb': 1 },
-                    events: { 'onReady': onPlayerReady, 'onStateChange': onPlayerStateChange }
-                });
+                players[playerId] = null; // Initialize as null
 
                 wrapper.addEventListener('click', () => {
-                    const player = players[playerId];
-                    if (player && typeof player.getPlayerState === 'function') {
+                    if (!players[playerId]) { // Create player on first click
+                        players[playerId] = new YT.Player(playerId, {
+                            videoId: videoId,
+                            playerVars: { 'autoplay': 1, 'controls': 1, 'rel': 0, 'modestbranding': 1, 'iv_load_policy': 3 },
+                            events: { 'onReady': onPlayerReady, 'onStateChange': onPlayerStateChange }
+                        });
+                    } else { // Player exists, just play/pause
+                        const player = players[playerId];
                          const playerState = player.getPlayerState();
-                        if (playerState === YT.PlayerState.PLAYING) {
-                            player.pauseVideo();
-                        } else {
+                        if (playerState !== YT.PlayerState.PLAYING) {
                             player.playVideo();
                         }
                     }
-                });
+                }, { once: false }); // Allow multiple clicks for play/pause
             });
         }
 
         function onPlayerReady(event) {
-            event.target.getIframe().style.visibility = 'hidden';
+            const iframe = event.target.getIframe();
+            const wrapper = iframe.closest('.video-wrapper');
+            const overlay = wrapper.querySelector('.video-overlay');
+            if (overlay) overlay.classList.add('hidden');
         }
 
         function onPlayerStateChange(event) {
@@ -1221,22 +1311,16 @@
             const wrapper = iframe.closest('.video-wrapper');
             const overlay = wrapper.querySelector('.video-overlay');
 
-            if (event.data === YT.PlayerState.PLAYING) {
+            if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+                if (overlay) overlay.classList.remove('hidden');
+            } else if (event.data === YT.PlayerState.PLAYING) {
                 if (overlay) overlay.classList.add('hidden');
-                iframe.style.visibility = 'visible';
-            } 
-            else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
-                if (overlay) {
-                    overlay.classList.remove('hidden');
-                    overlay.classList.add('has-thumbnail');
-                }
-                iframe.style.visibility = 'hidden';
             }
         }
         
         function pauseAllYouTubeVideos() {
             Object.values(players).forEach(player => {
-                if (player && typeof player.getPlayerState === 'function' && player.getPlayerState() === YT.PlayerState.PLAYING) {
+                if (player && typeof player.pauseVideo === 'function') {
                     player.pauseVideo();
                 }
             });
