@@ -50,7 +50,6 @@
             max-width: 1100px;
             margin: auto;
             overflow: hidden;
-            /* OPTIMIZATION: Changed padding to be more responsive. Base is now 2rem. */
             padding: 0 2rem;
         }
 
@@ -135,12 +134,12 @@
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 1.5rem; /* OPTIMIZATION: Reduced gap slightly */
+            gap: 1.5rem;
             flex-shrink: 1; 
         }
 
         .logo-container .logo {
-            height: 80px; /* OPTIMIZATION: Slightly smaller base size */
+            height: 80px;
             width: auto;
             flex-shrink: 0;
             padding: 6px 0 0 0;
@@ -148,7 +147,7 @@
 
         #main-header h1 {
             font-family: var(--font-family-brand);
-            font-size: 2.5rem; /* OPTIMIZATION: Adjusted base size */
+            font-size: 2.5rem;
             font-weight: normal;
             color: var(--dark-color); 
             margin: 0;
@@ -160,9 +159,8 @@
             justify-content: flex-end;
         }
         
-        /* OPTIMIZATION: Hide nav on desktop initially, show via media query */
         #main-nav {
-           display: none;
+        display: none;
         }
         
         #main-nav ul {
@@ -180,8 +178,8 @@
             font-size: 1rem;
             font-weight: 500;
             transition: color 0.2s ease-in-out;
-            padding: 0.5rem 0; /* OPTIMIZATION: Add padding for better mobile touch targets */
-            display: block; /* OPTIMIZATION: Make the whole area clickable */
+            padding: 0.5rem 0;
+            display: block;
         }
 
         #main-nav a:hover {
@@ -216,7 +214,7 @@
         
         .hero-content {
             display: flex;
-            flex-direction: column-reverse; /* OPTIMIZATION: Mobile-first approach */
+            flex-direction: column-reverse;
             align-items: center;
             text-align: center;
             gap: 2rem;
@@ -228,7 +226,7 @@
         .hero-text { flex: 1; max-width: 100%; }
 
         #hero h1 {
-            font-size: 2.5rem; /* OPTIMIZATION: Mobile-first font size */
+            font-size: 2.5rem;
             margin-bottom: 1rem;
             font-family: var(--font-family-headings);
             color: #fff;
@@ -236,7 +234,7 @@
         }
 
         #hero p {
-            font-size: 1.1rem; /* OPTIMIZATION: Mobile-first font size */
+            font-size: 1.1rem;
             margin-bottom: 2rem;
             color: #f0f0f0;
         }
@@ -244,7 +242,7 @@
         #hero .highlight {
             color: var(--secondary-color);
             font-family: var(--font-family-brand);
-            font-size: 4rem; /* OPTIMIZATION: Mobile-first font size */
+            font-size: 4rem;
         }
         
         #hero .btn-primary {
@@ -263,7 +261,7 @@
         
         #hero .buttons a { margin: 0.5rem 0.5rem 0.5rem 0; }
         
-        .hero-image { flex: 1; max-width: 80%; } /* OPTIMIZATION: Control size on mobile */
+        .hero-image { flex: 1; max-width: 80%; }
 
         .hero-image img {
             max-width: 100%;
@@ -322,9 +320,9 @@
 
         .galleries-wrapper {
             display: flex;
-            flex-direction: column; /* OPTIMIZATION: Mobile-first */
-            gap: 3rem; /* OPTIMIZATION: Mobile-first gap */
-            align-items: stretch; /* OPTIMIZATION: Ensures items stretch full width */
+            flex-direction: column;
+            gap: 3rem;
+            align-items: stretch;
         }
 
         .gallery-item {
@@ -382,7 +380,7 @@
             cursor: grab;
         }
         .carousel-track.is-dragging {
-             cursor: grabbing;
+            cursor: grabbing;
         }
 
         .carousel-slide {
@@ -391,10 +389,11 @@
             padding: 0 10px;
             box-sizing: border-box;
         }
-
+        
+        /* --- MOBILE ARROWS FIX: Step 1 --- */
+        /* Make nav visible on all screen sizes by default */
         .carousel-nav {
-            /* OPTIMIZATION: Hide nav by default, show on larger screens */
-            display: none;
+            display: flex;
             position: absolute;
             top: 50%;
             left: 0;
@@ -404,42 +403,41 @@
             pointer-events: none;
         }
 
+        /* --- MOBILE ARROWS FIX: Step 2 --- */
+        /* Style buttons for mobile (smaller, inside the container, semi-transparent) */
         .carousel-nav button {
-            background: var(--primary-color);
+            background: rgba(0, 0, 0, 0.4);
             border: none;
             color: white;
             cursor: pointer;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
             pointer-events: all;
             position: absolute;
             top: 50%;
-            opacity: 0.9;
+            opacity: 0.7;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
         
+        /* Position buttons INSIDE the carousel on mobile */
         .carousel-nav .prev-btn {
-            left: 0;
-            transform: translate(-120%, -50%);
+            left: 10px;
+            transform: translateY(-50%);
         }
         .carousel-nav .next-btn {
-            right: 0;
-            transform: translate(120%, -50%);
+            right: 10px;
+            transform: translateY(-50%);
         }
 
         .carousel-nav button:hover {
             opacity: 1;
-            background-color: #600018;
-            transform: scale(1.1) translate(var(--translateX, -120%), -50%);
-        }
-        .carousel-nav .next-btn:hover {
-            --translateX: 120%;
+            background-color: rgba(0, 0, 0, 0.6);
         }
         
         .carousel-nav button.is-hidden {
@@ -465,13 +463,6 @@
             height: 100%;
             object-fit: contain;
             display: block;
-        }
-        #gallery .carousel-nav button {
-             background: #800020;
-             color: white;
-        }
-        #gallery .carousel-nav button:hover {
-             background: rgba(255, 255, 255, 0.4);
         }
 
         /* Demo Carousel Specific Styles */
@@ -554,10 +545,10 @@
         
         .testimonials-grid {
             display: flex;
-            flex-direction: column; /* OPTIMIZATION: Mobile-first */
+            flex-direction: column;
             justify-content: center;
-            align-items: center; /* OPTIMIZATION: Center cards on mobile */
-            gap: 1.5rem; /* OPTIMIZATION: Reduced gap for mobile */
+            align-items: center;
+            gap: 1.5rem;
             flex-wrap: wrap;
         }
 
@@ -569,7 +560,7 @@
             text-align: center;
             flex: 1 1 300px;
             max-width: 350px;
-            width: 100%; /* OPTIMIZATION: Ensure it takes available width */
+            width: 100%;
         }
 
         .testimonial-card img {
@@ -598,7 +589,7 @@
 
         /* --- 8. Contact Us Section --- */
         #contact {
-             background: #78787838; 
+            background: #78787838; 
         }
 
         #contact .container { text-align: center; }
@@ -641,7 +632,7 @@
 
         .social-icons a {
             color: white; font-size: 2.5rem;
-            margin: 0 1rem; /* OPTIMIZATION: Reduced margin for mobile */
+            margin: 0 1rem;
             transition: color 0.3s;
         }
 
@@ -668,7 +659,7 @@
             text-align: center; z-index: 2000;
             transition: bottom 0.5s ease-in-out;
             display: flex; 
-            flex-direction: column; /* OPTIMIZATION: Mobile-first stacking */
+            flex-direction: column;
             justify-content: center;
             align-items: center; gap: 1rem;
         }
@@ -682,7 +673,7 @@
             border-radius: 5px; cursor: pointer;
         }
         
-        /* --- OPTIMIZATION: Responsive Design --- */
+        /* --- Responsive Design --- */
 
         /* Small devices (phones, 600px and up) */
         @media(min-width: 600px) {
@@ -695,29 +686,27 @@
         /* Medium devices (tablets, 768px and up) */
         @media(min-width: 768px) {
             .container {
-                padding: 0 3rem; /* OPTIMIZATION: Increase padding for tablets */
+                padding: 0 3rem;
             }
             
             section {
-                padding: 3rem 0; /* OPTIMIZATION: Slightly reduce padding */
+                padding: 3rem 0;
             }
 
             .section-title { font-size: 2.2rem; }
 
-            /* --- Header --- */
             #menu-toggle {
-                display: none; /* OPTIMIZATION: Hide hamburger on tablets and up */
+                display: none;
             }
 
             #main-nav {
-                display: block; /* OPTIMIZATION: Show nav menu */
+                display: block;
             }
 
-            #main-nav ul li a { display: inline-block; } /* Revert block display */
+            #main-nav ul li a { display: inline-block; }
             
-            /* --- Hero --- */
             .hero-content {
-                flex-direction: row; /* OPTIMIZATION: Side-by-side layout */
+                flex-direction: row;
                 align-items: center;
                 text-align: left;
             }
@@ -725,29 +714,56 @@
             #hero h1 { font-size: 3rem; }
             #hero p { font-size: 1.2rem; }
 
-            /* --- Gallery --- */
             .galleries-wrapper {
-                flex-direction: row; /* OPTIMIZATION: Side-by-side on tablets */
+                flex-direction: row;
                 gap: 4rem;
             }
             
-            /* --- Testimonials --- */
             .testimonials-grid {
-                flex-direction: row; /* OPTIMIZATION: Side-by-side on tablets */
+                flex-direction: row;
                 justify-content: center;
                 gap: 2rem;
             }
 
-            /* --- Cookie Banner --- */
             #cookie-banner {
                 flex-direction: row;
             }
+            
+            /* --- MOBILE ARROWS FIX: Step 3 --- */
+            /* Restore original button styles and move them OUTSIDE on larger screens */
+            .carousel-nav button {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                background: var(--primary-color);
+                opacity: 0.9;
+            }
+
+            .carousel-nav .prev-btn {
+                left: 0;
+                transform: translate(-120%, -50%); /* Move OUTSIDE */
+            }
+
+            .carousel-nav .next-btn {
+                right: 0;
+                transform: translate(120%, -50%); /* Move OUTSIDE */
+            }
+
+            .carousel-nav button:hover {
+                opacity: 1;
+                background-color: #600018;
+                transform: scale(1.1) translate(var(--translateX, -120%), -50%);
+            }
+
+            .carousel-nav .next-btn:hover {
+                --translateX: 120%;
+            }
         }
         
-        /* Large devices (laptops/desktops, 992px and up) - NEW BREAKPOINT */
+        /* Large devices (laptops/desktops, 992px and up) */
         @media(min-width: 992px) {
             .container {
-                padding: 0 4rem; /* OPTIMIZATION: Restore larger padding */
+                padding: 0 4rem;
             }
             
             #main-header h1 {
@@ -760,11 +776,9 @@
             #demos .carousel-slide {
                 flex-basis: 33.333%;
             }
-             .carousel-nav {
-                display: flex; /* OPTIMIZATION: Show nav buttons only on larger screens */
-            }
+            
             .galleries-wrapper {
-                 gap: 6rem; /* Increase gap for larger screens */
+                gap: 6rem;
             }
         }
 
@@ -774,20 +788,19 @@
                 font-size: 3rem;
             }
             .galleries-wrapper {
-                 gap: 10rem; /* Restore original large gap for very wide screens */
+                gap: 10rem;
             }
         }
         
-        /* OPTIMIZATION: Mobile menu override styles */
+        /* Mobile menu override styles */
         @media(max-width: 767px) {
             #main-header .header-inner { padding: 0.5rem 1rem; }
             #main-header h1 { font-size: 1.8rem; white-space: normal; line-height: 1.2; }
             .logo-container .logo { height: 50px; }
             .logo-container { gap: 1rem; }
 
-            /* Mobile Menu Styles */
             #main-nav {
-                display: block; /* Make it visible for transitions */
+                display: block;
                 position: absolute; top: 100%;
                 left: 0; width: 100%;
                 background: #fff;
@@ -811,7 +824,6 @@
             
             #main-nav ul li:last-child { border-bottom: none; }
         }
-
     </style>
 </head>
 <body>
