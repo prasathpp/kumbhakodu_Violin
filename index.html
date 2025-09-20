@@ -765,6 +765,14 @@
             #hero h1 {
                 font-size: 2.5rem;
             }
+            
+            /* --- THIS IS THE FIX --- */
+            /* Ensure this rule for the gallery is INSIDE the media query */
+            .galleries-wrapper {
+                flex-direction: column; /* Stack galleries vertically on mobile */
+                gap: 3rem; /* Add more space when stacked */
+            }
+            /* --- END FIX --- */
 
             .section-title {
                 font-size: 2rem;
@@ -776,13 +784,14 @@
                 gap: 1.5rem;
             }
             
-            /* --- SOLUTION --- */
-            /* This ensures the video container has a width on mobile, */
-            /* allowing 'aspect-ratio' to calculate the height correctly. */
             .video-wrapper {
                 width: 100%;
             }
-            /* --- END SOLUTION --- */
+
+            .testimonials-grid {
+                flex-direction: column; /* Stack cards vertically on mobile */
+                gap: 1.5rem;
+            }
 
             .social-icons a {
                 font-size: 2rem;
@@ -791,10 +800,6 @@
             
             #cookie-banner {
                 flex-direction: column;
-            }
-            .testimonials-grid {
-                flex-direction: column; /* Stack cards vertically on mobile */
-                gap: 10rem;
             }
         }
     </style>
@@ -861,6 +866,14 @@
                     <h3>Our Mission</h3>
                     <p>At Kumbhakodu School of Violin, we aim to nurture passion for music in every student. Our mission is to provide high-quality violin education to aspiring musicians of all ages.</p>
                 </div>
+            </div>
+        </section>
+        
+        <section id="tutor">
+            <div class="container">
+                <h2 class="section-title">About the Tutor's Musical Journey</h2>
+                <p>My inspiration to learn the violin began with Vid. Dr. Vidhyabhushana whose music deeply moved me.</p>
+                <a href="#praise" class="btn btn-primary">Find out more</a>
             </div>
         </section>
 
@@ -939,14 +952,6 @@
                     </div>
 
                 </div> <!-- end .galleries-wrapper -->
-            </div>
-        </section>
-        
-        <section id="tutor">
-            <div class="container">
-                <h2 class="section-title">About the Tutor's Musical Journey</h2>
-                <p>My inspiration to learn the violin began with Vid. Dr. Vidhyabhushana whose music deeply moved me.</p>
-                <a href="#praise" class="btn btn-primary">Find out more</a>
             </div>
         </section>
 
