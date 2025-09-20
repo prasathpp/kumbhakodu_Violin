@@ -200,11 +200,15 @@
         
         /* 2. Main Welcome (Hero) Section */
         #hero {
-            background-color: var(--light-color); 
-            min-height: 80vh; 
+            /* We use a linear-gradient overlay on top of the image url */
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/mail_photos/cover_photo.jpeg?raw=true');
+            background-size: cover;
+            background-position: center;
+            min-height: 80vh;
             display: flex;
             align-items: center;
             padding: 4rem 2rem;
+            color: #fff; /* Sets the default text color for children to white */
         }
         
         .hero-content {
@@ -226,13 +230,14 @@
             font-size: 3rem;
             margin-bottom: 1rem;
             font-family: var(--font-family-headings);
-            color: var(--dark-color);
+            color: #fff; /* Explicitly set to white */
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Adds depth and improves readability */
         }
 
         #hero p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
-            color: #555;
+            color: #f0f0f0; /* A soft white for better visual hierarchy */
         }
         
         #hero .buttons a {
@@ -770,11 +775,11 @@
                     <p>Join our violin classes to master your skills today!</p>
                     <div class="buttons">
                         <a href="mailto:rajeshkrishnan81@gmail.com" class="btn btn-primary">Enroll in Classes</a>
-                        <a href="#about" class="btn btn-secondary">Learn More</a>
+                        <!-- <a href="#about" class="btn btn-secondary">Learn More</a> -->
                     </div>
                 </div>
                 <div class="hero-image">
-                    <img src="https://i.ibb.co/hK5XvK1/tutor-photo.png" alt="Tutor with a violin">
+                    <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/mail_photos/him01.jpeg?raw=true" alt="Tutor with a violin">
                 </div>
             </div>
         </section>
@@ -833,7 +838,7 @@
                         <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/28.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance">
                         <!-- <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/29.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"> -->
                         <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/30.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance">
-                        <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/31.JPEG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance">
+                        <!-- <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/31.JPEG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"> -->
                         <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/32.jpg?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance">
                     </div>
                     <div class="gallery-nav">
