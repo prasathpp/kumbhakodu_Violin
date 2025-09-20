@@ -461,7 +461,10 @@
             background-color: #000;
         }
         #gallery .carousel-slide {
-            padding: 0; /* No gutter for single-image slides */
+            padding: 0;
+            display: flex; /* ADD THIS: Make it a flex container */
+            align-items: center; /* ADD THIS: Vertically center the image */
+            justify-content: center; /* No gutter for single-image slides */
         }
         #gallery .carousel-slide img {
             width: 100%;
@@ -695,7 +698,7 @@
         @media(max-width: 768px) {
             #main-header .header-inner { padding: 0 1rem; }
             #main-header h1 { font-size: 1.5rem; }
-            .logo-container .logo { height: 35px; }
+            .logo-container .logo { height: 45px; }
 
             /* Mobile Menu Styles */
             #main-nav {
