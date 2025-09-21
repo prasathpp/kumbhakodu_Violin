@@ -16,13 +16,15 @@
     <style>
         /* CSS Reset and Global Styles */
         :root {
-            --primary-color: #800020;      
-            --secondary-color: #d4af37;    
-            --dark-color: #1a1a1a;         
-            --light-color: #FAF8F1;        
-            --text-color: #2c2c2c;         
-            --demo-bg-color: #2c2c2c;       
+            /* --- NEW: Refined Color Palette --- */
+            --primary-color: #800020;      /* Deep, rich burgundy */
+            --secondary-color: #d4af37;    /* Elegant gold (unchanged) */
+            --dark-color: #1a1a1a;         /* Soft, near-black for text and dark elements */
+            --light-color: #FAF8F1;        /* Warm, creamy off-white */
+            --text-color: #2c2c2c;         /* Slightly softer text color */
+            --demo-bg-color: #2c2c2c;       /* Dark charcoal for a cohesive, dramatic feel */
 
+            /* --- Fonts (unchanged) --- */
             --font-family-headings: 'Lora', serif;
             --font-family-body: 'Poppins', sans-serif;
             --font-family-brand: 'Great Vibes', cursive;
@@ -40,17 +42,18 @@
 
         body {
             font-family: var(--font-family-body);
+            /* --- NEW: Enhanced Readability --- */
             line-height: 1.7; 
             color: var(--text-color);
-            background-color: var(--light-color); 
+            background-color: var(--light-color); /* Use warm off-white for the main background */
         }
         
         /* Utility Classes */
         .container {
-            max-width: 1100px;
+            max-width: 1500px;
             margin: auto;
             overflow: hidden;
-            padding: 0 2rem;
+            padding: 0 3rem;
         }
 
         section {
@@ -92,7 +95,8 @@
         }
         
         .btn-primary:hover {
-            background-color: #600018;
+            background-color: #600018; /* Darker burgundy on hover */
+            /* --- NEW: Polished UI --- */
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(0,0,0,0.15);
         }
@@ -110,11 +114,18 @@
 
         /* --- 1. Header Section --- */
         #main-header {
+            /* --- THE FIX --- */
+            position: fixed; /* Takes it out of the normal flow */
+            top: 0;          /* Pins it to the top of the viewport */
+            left: 0;         /* Stretches it to the left edge */
+            right: 0;        /* Stretches it to the right edge */
+            z-index: 1000;   /* Ensures it stays on top of other content */
+            padding: 7px 0 0 0;
             background: #fff; 
-            border-bottom: 4px solid var(--secondary-color);
-            z-index: 1000;
-            position: relative;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08); 
+        }
+        
+        main {
+            padding-top: 90px; /* Prevents content from hiding under the fixed header */
         }
         
         .logo-text {
@@ -134,22 +145,21 @@
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 1.5rem;
+            gap: 1rem;
             flex-shrink: 1; 
         }
 
         .logo-container .logo {
-            height: 80px;
+            height: 50px;
             width: auto;
             flex-shrink: 0;
-            padding: 6px 0 0 0;
         }
 
         #main-header h1 {
             font-family: var(--font-family-brand);
-            font-size: 2.5rem;
+            font-size: 3rem; 
             font-weight: normal;
-            color: var(--dark-color); 
+            color: var(--dark-color); /* Use dark text color */
             margin: 0;
             white-space: nowrap;
         }
@@ -160,7 +170,13 @@
         }
         
         #main-nav {
-        display: none;
+            overflow: hidden;
+            max-width: 0;
+            transition: max-width 0.5s ease-in-out;
+        }
+
+        #main-nav.is-open {
+            max-width: 600px;
         }
         
         #main-nav ul {
@@ -173,17 +189,15 @@
 
         #main-nav a {
             text-decoration: none;
-            color: var(--text-color);
+            color: var(--text-color); /* Use standard text color */
             font-family: var(--font-family-body);
             font-size: 1rem;
             font-weight: 500;
             transition: color 0.2s ease-in-out;
-            padding: 0.5rem 0;
-            display: block;
         }
 
         #main-nav a:hover {
-            color: var(--primary-color);
+            color: var(--primary-color); /* Use primary color for hover */
         }
         
         #menu-toggle {
@@ -201,6 +215,7 @@
         }
         
         /* --- 2. Main Welcome (Hero) Section --- */
+        
         #hero {
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/mail_photos/cover.png?raw=true');
             background-size: cover;
@@ -214,19 +229,18 @@
         
         .hero-content {
             display: flex;
-            flex-direction: column-reverse;
             align-items: center;
-            text-align: center;
+            justify-content: space-between;
             gap: 2rem;
             max-width: 1100px;
             margin: 0 auto;
             width: 100%;
         }
         
-        .hero-text { flex: 1; max-width: 100%; }
+        .hero-text { flex: 1; max-width: 50%; }
 
         #hero h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
             font-family: var(--font-family-headings);
             color: #fff;
@@ -234,15 +248,15 @@
         }
 
         #hero p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             margin-bottom: 2rem;
             color: #f0f0f0;
         }
-        
+
         #hero .highlight {
             color: var(--secondary-color);
             font-family: var(--font-family-brand);
-            font-size: 4rem;
+            font-size: 4.5rem;
         }
         
         #hero .btn-primary {
@@ -261,7 +275,7 @@
         
         #hero .buttons a { margin: 0.5rem 0.5rem 0.5rem 0; }
         
-        .hero-image { flex: 1; max-width: 80%; }
+        .hero-image { flex: 1; max-width: 45%; text-align: center; }
 
         .hero-image img {
             max-width: 100%;
@@ -272,7 +286,7 @@
         
         /* --- 3. About Us Section --- */
         #about {
-            background: #78787838; 
+            background: transparent; /* Let the body background show through */
         }
         
         #about p.intro {
@@ -289,18 +303,19 @@
         }
         
         #about ul li {
-            background: #71282833; 
+            /* --- NEW: Adjusted for new background --- */
+            background: #fff; 
             margin-bottom: 0.75rem;
             padding: 1rem 1.5rem;
             border-left: 5px solid var(--primary-color);
             border-radius: 5px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06); 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06); /* Softer shadow */
         }
 
         #about .mission {
             text-align: center;
             margin-top: 3rem;
-            background: #71282833; 
+            background: #fff; /* White card on cream background */
             padding: 2rem;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.06);
@@ -309,20 +324,20 @@
         #about .mission h3 {
             font-size: 1.8rem;
             font-family: var(--font-family-headings);
-            color: black;
+            color: var(--primary-color);
             margin-bottom: 1rem;
         }
 
         /* --- 4. Photo Gallery Section --- */
         #gallery {
-            background-color: transparent; 
+            background-color: #fff; /* White background to frame the galleries */
         }
 
         .galleries-wrapper {
             display: flex;
-            flex-direction: column;
-            gap: 3rem;
-            align-items: stretch;
+            /* --- NEW: Adjusted Spacing --- */
+            gap: 4rem; 
+            align-items: flex-start;
         }
 
         .gallery-item {
@@ -337,10 +352,56 @@
             font-family: var(--font-family-headings);
             color: var(--dark-color);
         }
+
+        .gallery-container {
+            position: relative;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 10px;
+             /* --- NEW: Polished UI --- */
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            aspect-ratio: 4 / 3;
+            background-color: #000;
+        }
         
+        .gallery-slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .gallery-slider img {
+            width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+            object-fit: contain;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .gallery-nav button {
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            padding: 1rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        
+        .gallery-nav button:hover { background: rgba(0, 0, 0, 0.8); }
+        .prev-btn { border-radius: 0 5px 5px 0; }
+        .next-btn { border-radius: 5px 0 0 5px; }
+
         /* --- 5. Tutor's Journey Section --- */
         #tutor {
-            background: #c9caca;
+            background: transparent;
             text-align: center;
         }
         
@@ -351,135 +412,92 @@
 
         /* --- 6. Class Demonstrations Section --- */
         #demos {
-            background-color: #78787838; 
-            color: #2c2c2c;
+            background-color: var(--demo-bg-color); 
+            color: var(--light-color);
         }
 
         #demos .section-title, #demos .section-title::after {
-            color: black;
+            color: var(--light-color);
             background-color: transparent;
         }
         
-        /* --- Universal Carousel Styles --- */
-        .carousel-container {
-            position: relative;
-        }
-
+        /* NEW: Carousel Styles */
         .carousel-wrapper {
             position: relative;
-            margin: auto;
-            overflow: hidden;
-            -webkit-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
+            padding: 0 50px; /* Space for arrows */
+            margin: 0 auto;
         }
-        
-        .carousel-track {
+
+        .video-carousel-slider {
             display: flex;
             transition: transform 0.5s ease-in-out;
-            cursor: grab;
-        }
-        .carousel-track.is-dragging {
-            cursor: grabbing;
         }
 
-        .carousel-slide {
-            flex-shrink: 0;
-            width: 100%;
-            padding: 0 10px;
-            box-sizing: border-box;
-        }
-        
-        /* --- MOBILE ARROWS FIX: Step 1 --- */
-        /* Make nav visible on all screen sizes by default */
-        .carousel-nav {
-            display: flex;
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 100%;
-            justify-content: space-between;
-            transform: translateY(-50%);
-            pointer-events: none;
+        .video-carousel-item {
+            flex: 0 0 100%; /* Default for mobile */
+            padding: 0 1rem;
         }
 
-        /* --- MOBILE ARROWS FIX: Step 2 --- */
-        /* Style buttons for mobile (smaller, inside the container, semi-transparent) */
-        .carousel-nav button {
-            background: rgba(0, 0, 0, 0.4);
-            border: none;
-            color: white;
-            cursor: pointer;
-            font-size: 1.2rem;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            pointer-events: all;
-            position: absolute;
-            top: 50%;
-            opacity: 0.7;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-        
-        /* Position buttons INSIDE the carousel on mobile */
-        .carousel-nav .prev-btn {
-            left: 10px;
-            transform: translateY(-50%);
-        }
-        .carousel-nav .next-btn {
-            right: 10px;
-            transform: translateY(-50%);
+        @media (min-width: 768px) {
+            .video-carousel-item {
+                flex-basis: 50%; /* 2 items on tablet */
+            }
         }
 
-        .carousel-nav button:hover {
-            opacity: 1;
-            background-color: rgba(0, 0, 0, 0.6);
-        }
-        
-        .carousel-nav button.is-hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-        
-        /* Photo Gallery Carousel Specific Styles */
-        #gallery .carousel-wrapper {
-            border-radius: 10px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-            aspect-ratio: 4 / 3;
-            background-color: #000;
-        }
-        #gallery .carousel-slide {
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        #gallery .carousel-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            display: block;
+        @media (min-width: 992px) {
+            .video-carousel-item {
+                flex-basis: calc(100% / 3); /* 3 items on desktop */
+            }
         }
 
-        /* Demo Carousel Specific Styles */
-        #demos .carousel-slide {
-            flex-basis: 100%;
-        }
-        
-        .demo-caption {
+        .video-info {
+            padding: 1rem 0.5rem;
             text-align: center;
-            margin-top: 1rem;
-            font-size: 1.1rem;
+        }
+
+        .video-info h4 {
+            font-size: 1.2rem;
             font-family: var(--font-family-headings);
-            color: #2c2c2c;
-            font-weight: bold;
+            color: #fff;
+            margin-bottom: 0.25rem;
+        }
+
+        .video-info p {
+            font-size: 1rem;
+            color: #ccc;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 40%; /* Adjust vertical position */
+            transform: translateY(-50%);
+            background-color: #641e1e;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.2s ease;
+        }
+
+        .carousel-nav:hover {
+            background-color: #641e1e;
+            border-color: #fff;
+        }
+
+        .carousel-nav.prev { left: 0; }
+        .carousel-nav.next { right: 0; }
+
+        .carousel-nav.disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
         }
         
         .video-wrapper {
+            flex: 1; 
             position: relative;
             aspect-ratio: 16 / 9;
             cursor: pointer;
@@ -496,7 +514,7 @@
         
         .video-wrapper iframe {
             width: 100%; height: 100%;
-            border: none; border-radius: 15px;
+            border: none; border-radius: 8px; /* Match wrapper */
         }
 
         .video-overlay {
@@ -515,7 +533,7 @@
         .video-overlay.hidden { display: none; }
 
         .play-button {
-            width: 80px; height: 80px;
+            width: 70px; height: 70px; /* Slightly smaller for cards */
             background-color: rgba(0, 0, 0, 0.6);
             border-radius: 50%;
             display: flex; justify-content: center; align-items: center;
@@ -526,18 +544,18 @@
 
         .video-wrapper:hover .play-button {
             transform: scale(1.1);
-            background-color: rgba(128, 0, 32, 0.8);
+            background-color: rgba(128, 0, 32, 0.8); /* Burgundy hover */
         }
 
         .play-button::after {
             content: ''; display: block;
             width: 0; height: 0;
-            border-top: 15px solid transparent;
-            border-bottom: 15px solid transparent;
-            border-left: 25px solid white;
-            margin-left: 5px;
+            border-top: 12px solid transparent; /* Scaled down */
+            border-bottom: 12px solid transparent;
+            border-left: 20px solid white;
+            margin-left: 4px;
         }
-
+        
         /* --- 7. Praise / Testimonials Section --- */
         #praise {
             background: transparent;
@@ -545,22 +563,20 @@
         
         .testimonials-grid {
             display: flex;
-            flex-direction: column;
             justify-content: center;
-            align-items: center;
-            gap: 1.5rem;
+            gap: 2.5rem; /* Slightly reduced gap */
             flex-wrap: wrap;
         }
 
         .testimonial-card {
-            background: #fff;
+            background: #fff; /* White cards on cream background */
             padding: 1.5rem;
             border-radius: 10px;
+            /* --- NEW: Polished UI --- */
             box-shadow: 0 8px 24px rgba(0,0,0,0.08);
             text-align: center;
             flex: 1 1 300px;
             max-width: 350px;
-            width: 100%;
         }
 
         .testimonial-card img {
@@ -589,7 +605,7 @@
 
         /* --- 8. Contact Us Section --- */
         #contact {
-            background: #78787838; 
+             background: #fff; /* White background */
         }
 
         #contact .container { text-align: center; }
@@ -632,8 +648,7 @@
 
         .social-icons a {
             color: white; font-size: 2.5rem;
-            margin: 0 1rem;
-            transition: color 0.3s;
+            margin: 0 1.5rem; transition: color 0.3s;
         }
 
         .social-icons a:hover { color: var(--secondary-color); }
@@ -649,7 +664,7 @@
         
         footer p { margin-bottom: 0.5rem; }
 
-        /* --- Cookie Banner --- */
+        /* --- Cookie Banner (styles unchanged) --- */
         #cookie-banner {
             position: fixed; bottom: -100%; left: 0;
             width: 100%;
@@ -658,9 +673,7 @@
             color: white; padding: 1rem;
             text-align: center; z-index: 2000;
             transition: bottom 0.5s ease-in-out;
-            display: flex; 
-            flex-direction: column;
-            justify-content: center;
+            display: flex; justify-content: center;
             align-items: center; gap: 1rem;
         }
         
@@ -674,143 +687,23 @@
         }
         
         /* --- Responsive Design --- */
+        @media(max-width: 768px) {
+            .container { padding: 0 1rem; }
+            #main-header .header-inner { padding: 0 1rem; }
+            #main-header h1 { font-size: 1.5rem; }
+            .logo-container .logo { height: 35px; }
 
-        /* Small devices (phones, 600px and up) */
-        @media(min-width: 600px) {
-            #demos .carousel-slide {
-                flex-basis: 50%;
-            }
-            .hero-image { max-width: 60%; }
-        }
-
-        /* Medium devices (tablets, 768px and up) */
-        @media(min-width: 768px) {
-            .container {
-                padding: 0 3rem;
-            }
-            
-            section {
-                padding: 3rem 0;
-            }
-
-            .section-title { font-size: 2.2rem; }
-
-            #menu-toggle {
-                display: none;
-            }
-
+            /* Mobile Menu Styles */
             #main-nav {
-                display: block;
-            }
-
-            #main-nav ul li a { display: inline-block; }
-            
-            .hero-content {
-                flex-direction: row;
-                align-items: center;
-                text-align: left;
-            }
-            .hero-text, .hero-image { max-width: 50%; }
-            #hero h1 { font-size: 3rem; }
-            #hero p { font-size: 1.2rem; }
-
-            .galleries-wrapper {
-                flex-direction: row;
-                gap: 4rem;
-            }
-            
-            .testimonials-grid {
-                flex-direction: row;
-                justify-content: center;
-                gap: 2rem;
-            }
-
-            #cookie-banner {
-                flex-direction: row;
-            }
-            
-            /* --- MOBILE ARROWS FIX: Step 3 --- */
-            /* Restore original button styles and move them OUTSIDE on larger screens */
-            .carousel-nav button {
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
-                background: var(--primary-color);
-                opacity: 0.9;
-            }
-
-            .carousel-nav .prev-btn {
-                left: 0;
-                transform: translate(-120%, -50%); /* Move OUTSIDE */
-            }
-
-            .carousel-nav .next-btn {
-                right: 0;
-                transform: translate(120%, -50%); /* Move OUTSIDE */
-            }
-
-            .carousel-nav button:hover {
-                opacity: 1;
-                background-color: #600018;
-                transform: scale(1.1) translate(var(--translateX, -120%), -50%);
-            }
-
-            .carousel-nav .next-btn:hover {
-                --translateX: 120%;
-            }
-        }
-        
-        /* Large devices (laptops/desktops, 992px and up) */
-        @media(min-width: 992px) {
-            .container {
-                padding: 0 4rem;
-            }
-            
-            #main-header h1 {
-                font-size: 2.8rem;
-            }
-            .logo-container .logo {
-                height: 90px;
-            }
-
-            #demos .carousel-slide {
-                flex-basis: 33.333%;
-            }
-            
-            .galleries-wrapper {
-                gap: 6rem;
-            }
-        }
-
-        /* Extra large devices (large desktops, 1200px and up) */
-        @media(min-width: 1200px) {
-            #main-header h1 {
-                font-size: 3rem;
-            }
-            .galleries-wrapper {
-                gap: 10rem;
-            }
-        }
-        
-        /* Mobile menu override styles */
-        @media(max-width: 767px) {
-            #main-header .header-inner { padding: 0.5rem 1rem; }
-            #main-header h1 { font-size: 1.8rem; white-space: normal; line-height: 1.2; }
-            .logo-container .logo { height: 50px; }
-            .logo-container { gap: 1rem; }
-
-            #main-nav {
-                display: block;
                 position: absolute; top: 100%;
                 left: 0; width: 100%;
-                background: #fff;
+                background: #fff; /* White dropdown background */
                 box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-                max-height: 0;
-                overflow: hidden;
+                max-width: none; max-height: 0;
                 transition: max-height 0.4s ease-in-out;
             }
 
-            #main-nav.is-open { max-height: 500px;; max-width: none; }
+            #main-nav.is-open { max-height: 500px; max-width: none; }
 
             #main-nav ul {
                 display: block; padding: 1rem 0;
@@ -818,11 +711,35 @@
             }
             
             #main-nav ul li {
-                padding: 0.25rem 1rem;
+                padding: 0.75rem 1rem;
                 border-bottom: 1px solid #eee;
             }
             
             #main-nav ul li:last-child { border-bottom: none; }
+
+            .hero-content {
+                flex-direction: column-reverse; 
+                text-align: center;
+            }
+            .hero-text, .hero-image { max-width: 100%; }
+            #hero h1 { font-size: 2.5rem; }
+            
+            .galleries-wrapper {
+                flex-direction: column;
+                gap: 3rem;
+            }
+
+            .section-title { font-size: 2rem; }
+            
+            .testimonials-grid { flex-direction: column; gap: 1.5rem; }
+            .social-icons a { font-size: 2rem; margin: 0 1rem; }
+            #cookie-banner { flex-direction: column; }
+            
+            /* Demos section responsive */
+            .carousel-wrapper { padding: 0 40px; }
+            .carousel-nav { width: 35px; height: 35px; font-size: 1.2rem; top: 45%; }
+            .carousel-nav.prev { left: 5px; }
+            .carousel-nav.next { right: 5px; }
         }
     </style>
 </head>
@@ -831,7 +748,7 @@
         <div class="header-inner">
             <div class="logo-container">
                 <a href="index.html" class="logo-text">
-                    <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/mail_photos/yellowLogo.jpeg?raw=true" alt="Violin Logo" class="logo">
+                    <img src="https://raw.githubusercontent.com/prasathpp/kumbhakodu_Violin/main/src/kumbhakodu_logo.jpg" alt="Violin Logo" class="logo">
                 </a>
                 <h1>
                     <a href="index.html" class="logo-text">Kumbhakodu School of Violin</a>
@@ -848,7 +765,7 @@
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </nav>
-                <button id="menu-toggle" aria-label="Open Navigation Menu" aria-controls="main-nav" aria-expanded="false">
+                <button id="menu-toggle" aria-label="Open Navigation Menu">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -863,6 +780,7 @@
                     <p>Join our violin classes to master your skills today!</p>
                     <div class="buttons">
                         <a href="mailto:rajeshkrishnan81@gmail.com" class="btn btn-primary">Enroll in Classes</a>
+                        <!-- <a href="#about" class="btn btn-secondary">Learn More</a> -->
                     </div>
                 </div>
                 <div class="hero-image">
@@ -871,6 +789,7 @@
             </div>
         </section>
 
+        <!-- The rest of the content remains the same -->
         <section id="about">
             <div class="container">
                 <h2 class="section-title">About Kumbhakodu School</h2>
@@ -892,165 +811,216 @@
         <section id="tutor">
             <div class="container">
                 <h2 class="section-title">About the Tutor's Musical Journey</h2>
-
-                <p>My inspiration to learn the violin began with Vid. Dr. Vidhyabhushana whose music deeply moved me.
-                Later, I found renewed inspiration through Padma Shri awardee Vid. A Kanyakumari by listening to her performances on the radio. 
-                Encouraged by Shri Natraja Bhat and Professor Shrikrishna Bhat (Madras University), I took a significant step forward in my musical journey.
-                On April 2, 2005, I began training under Vid. A Kanyakumari. With the guidance of Natraja Bhat, I moved to Chennai to continue my learning, 
-                staying at Shankara Gurukulam, Abhiramapuram. I am grateful to Shri Krishnamurty Iyer and Shri Ramachandra Iyer, for kindly offering me accommodation 
-                at no cost. I also received support from Smt Yogam Santhanam and Shri Santhanam, who helped set up the necessary teaching infrastructure.
-                Over time, I learned intricacies of the instrument from Rajiv Mukundan, and spent many hours practicing with Tirumarugal Brothers and Smt Anusha Shreeram. 
-                I also had the opportunity to collaborate frequently with A. Shyam Prakash, son of ShriKrishna Bhat, whose singing enriched my musical expression.</p>
+                <p>My inspiration to learn the violin began with Vid. Dr. Vidhyabhushana whose music deeply moved me.</p>
                 <a href="#praise" class="btn btn-primary">Find out more</a>
             </div>
         </section>
 
-        <!-- Gallery Section with NEW HTML structure -->
+        <!-- REPLACE your entire existing #gallery section with this new HTML -->
         <section id="gallery">
             <div class="container">
                 <h2 class="section-title">Melodies in motion: Our vibrant photo gallery</h2>
+
+                <!-- This new wrapper will hold both galleries -->
                 <div class="galleries-wrapper">
+
+                    <!-- Gallery 1: School Photos -->
                     <div class="gallery-item">
                         <h3>Images of the Tutor</h3>
-                        <div class="carousel-container">
-                            <div class="carousel-wrapper">
-                                <div class="carousel-track">
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/01.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"></div>
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/02.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"></div>
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/03.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"></div>
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/04.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"></div>
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/06.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"></div>
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/07.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"></div>
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/08.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"></div>
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/09.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"></div>
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/10.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"></div>
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/11.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"></div>
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/12.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"></div>
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/13.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"></div>
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/14.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"></div>
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/15.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"></div>
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/19.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"></div>
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/21.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"></div>
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/22.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"></div>
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/25.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"></div>
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/26.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"></div>
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/27.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"></div>
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/28.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"></div>
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/30.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"></div>
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/32.jpg?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"></div>
-                                </div>
+                        <div class="gallery-container">
+                            <div class="gallery-slider">
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/01.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance">
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/02.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance">
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/03.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance">
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/04.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance">
+                                <!-- <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/05.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"> -->
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/06.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance">
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/07.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance">
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/08.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance">
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/09.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance">
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/10.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance">
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/11.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance">
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/12.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance">
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/13.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance">
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/14.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance">
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/15.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance">
+                                <!-- <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/16.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"> -->
+                                <!-- <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/17.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"> -->
+                                <!-- <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/18.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"> -->
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/19.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance">
+                                <!-- <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/20.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"> -->
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/21.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance">
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/22.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance">
+                                <!-- <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/23.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"> -->
+                                <!-- <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/24.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"> -->
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/25.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance">
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/26.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance">
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/27.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance">
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/28.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance">
+                                <!-- <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/29.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"> -->
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/30.JPG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance">
+                                <!-- <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/31.JPEG?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance"> -->
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/32.jpg?raw=true?q=80&w=1932&auto=format&fit=crop" alt="Violin Performance">
                             </div>
-                            <div class="carousel-nav">
+                            <div class="gallery-nav">
                                 <button class="prev-btn">&lt;</button>
                                 <button class="next-btn">&gt;</button>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Gallery 2: Tutor Photos -->
                     <div class="gallery-item">
                         <h3>Images of the School</h3>
-                        <div class="carousel-container">
-                             <div class="carousel-wrapper">
-                                <div class="carousel-track">
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/mail_photos/students01.JPG?raw=true" alt="Tutor Photo"></div>
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/mail_photos/students02.jpeg?raw=true" alt="Tutor Photo"></div>
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/mail_photos/students03.jpeg?raw=true" alt="Tutor Photo"></div>
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/mail_photos/students04.JPG?raw=true" alt="Tutor Photo"></div>
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/mail_photos/students05.JPG?raw=true" alt="Tutor Photo"></div>
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/mail_photos/students06.JPG?raw=true" alt="Tutor Photo"></div>
-                                    <div class="carousel-slide"><img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/mail_photos/students07.JPG?raw=true" alt="Tutor Photo"></div>
-                                </div>
+                        <div class="gallery-container">
+                            <div class="gallery-slider">
+                                <!-- !!! REPLACE THESE WITH YOUR TUTOR IMAGES !!! -->
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/mail_photos/students01.JPG?raw=true" alt="Tutor Photo">
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/mail_photos/students02.jpeg?raw=true" alt="Tutor Photo">
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/mail_photos/students03.jpeg?raw=true" alt="Tutor Photo">
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/mail_photos/students04.JPG?raw=true" alt="Tutor Photo">
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/mail_photos/students05.JPG?raw=true" alt="Tutor Photo">
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/mail_photos/students06.JPG?raw=true" alt="Tutor Photo">
+                                <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/mail_photos/students07.JPG?raw=true" alt="Tutor Photo">
                             </div>
-                            <div class="carousel-nav">
+                            <div class="gallery-nav">
                                 <button class="prev-btn">&lt;</button>
                                 <button class="next-btn">&gt;</button>
                             </div>
                         </div>
                     </div>
-                </div>
+
+                </div> <!-- end .galleries-wrapper -->
             </div>
         </section>
 
-        <!-- Class Demonstrations Section with NEW HTML structure -->
+        <!-- START: NEW Class Demonstrations Section -->
         <section id="demos">
             <div class="container">
                 <h2 class="section-title">Class Demonstrations</h2>
-                <div class="carousel-container">
-                    <div class="carousel-wrapper">
-                        <div class="carousel-track">
-                            <div class="carousel-slide">
-                                <div class="video-wrapper"> <!-- REMOVED placeholder class -->
-                                    <iframe src="https://www.youtube.com/embed/3vYHVVQgQV0?enablejsapi=1&modestbranding=1&rel=0&controls=0&disablekb=1" 
-                                    width="560" height="315" title="Kapali | Sri Papanasam Sivan | Rajesh Kumbhakodu" frameborder="0"></iframe>
-                                </div>
-                                <div class="demo-caption">Kapali Keerthanam<br>Mohana Ragam</div>
+                <div class="carousel-wrapper">
+                    <div class="video-carousel-slider">
+                        <!-- Video Item 1 -->
+                        <div class="video-carousel-item">
+                            <div class="video-wrapper player-placeholder">
+                                <!-- Note: This first iframe is directly embedded for instant play -->
+                                <iframe src="https://www.youtube.com/embed/3vYHVVQgQV0?autoplay=0&modestbranding=1&rel=0&fs=1&controls=1" 
+                                title="Kapali | Sri Papanasam Sivan | Rajesh Kumbhakodu" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
-                            <div class="carousel-slide">
-                                <div class="video-wrapper" data-video-id="63i9OSs8iSE">
-                                    <div class="player-placeholder"></div>
-                                    <div class="video-overlay has-thumbnail"><div class="play-button"></div></div>
-                                </div>
-                                <div class="demo-caption">Saraswathi Namosthuthe<br>Saraswathi Ragam</div>
-                            </div>
-                            <div class="carousel-slide">
-                                <div class="video-wrapper" data-video-id="fMS0QteE3OE">
-                                    <div class="player-placeholder"></div>
-                                    <div class="video-overlay has-thumbnail"><div class="play-button"></div></div>
-                                </div>
-                                <div class="demo-caption">Seethama Mayamma<br>Vasantha Ragam</div>
-                            </div>
-                            <div class="carousel-slide">
-                                <div class="video-wrapper" data-video-id="aVnfoCxuoJc">
-                                    <div class="player-placeholder"></div>
-                                    <div class="video-overlay has-thumbnail"><div class="play-button"></div></div>
-                                </div>
-                                <div class="demo-caption">Ninnukori Varnam<br>Mohana Ragam</div>
-                            </div>
-                            <div class="carousel-slide">
-                                <div class="video-wrapper" data-video-id="r4zrGAygXNk">
-                                    <div class="player-placeholder"></div>
-                                    <div class="video-overlay has-thumbnail"><div class="play-button"></div></div>
-                                </div>
-                                <div class="demo-caption">Keraya Neeranu Geetham<br>Malahari Ragam</div>
-                            </div>
-                            <div class="carousel-slide">
-                                <div class="video-wrapper" data-video-id="HdW8G4ASx7E">
-                                    <div class="player-placeholder"></div>
-                                    <div class="video-overlay has-thumbnail"><div class="play-button"></div></div>
-                                </div>
-                                <div class="demo-caption">Shri Gananatha Geetham<br>Malahari Ragam</div>
-                            </div>
-                            <div class="carousel-slide">
-                                <div class="video-wrapper" data-video-id="knhs_oo_dCo">
-                                    <div class="player-placeholder"></div>
-                                    <div class="video-overlay has-thumbnail"><div class="play-button"></div></div>
-                                </div>
-                                <div class="demo-caption">Kanta Judumi<br>Vachaspati Ragam</div>
+                            <div class="video-info">
+                                <h4>Kapali Keerthanam</h4>
+                                <p>Mohana Ragam</p>
                             </div>
                         </div>
-                    </div>
-                     <div class="carousel-nav">
-                        <button class="prev-btn">&lt;</button>
-                        <button class="next-btn">&gt;</button>
-                    </div>
-                </div>
+                        <!-- Video Item 2 -->
+                        <div class="video-carousel-item">
+                            <div class="video-wrapper" data-video-id="63i9OSs8iSE">
+                                <div class="player-placeholder"></div>
+                                <div class="video-overlay has-thumbnail">
+                                    <div class="play-button"></div>
+                                </div>
+                            </div>
+                            <div class="video-info">
+                                <h4>Saraswathi Namosthuthe</h4>
+                                <p>Saraswathi Ragam</p>
+                            </div>
+                        </div>
+                        <!-- Video Item 3 -->
+                        <div class="video-carousel-item">
+                            <div class="video-wrapper" data-video-id="fMS0QteE3OE">
+                                <div class="player-placeholder"></div>
+                                <div class="video-overlay has-thumbnail">
+                                    <div class="play-button"></div>
+                                </div>
+                            </div>
+                            <div class="video-info">
+                                <h4>Seethama Mayamma</h4>
+                                <p>Vasantha Ragam</p>
+                            </div>
+                        </div>
+                        <!-- Video Item 4 -->
+                        <div class="video-carousel-item">
+                            <div class="video-wrapper" data-video-id="aVnfoCxuoJc">
+                                <div class="player-placeholder"></div>
+                                <div class="video-overlay has-thumbnail">
+                                    <div class="play-button"></div>
+                                </div>
+                            </div>
+                            <div class="video-info">
+                                <h4>Ninnukori Varnam</h4>
+                                <p>Mohana Ragam</p>
+                            </div>
+                        </div>
+                        <!-- Video Item 5 -->
+                        <div class="video-carousel-item">
+                            <div class="video-wrapper" data-video-id="r4zrGAygXNk">
+                                <div class="player-placeholder"></div>
+                                <div class="video-overlay has-thumbnail">
+                                    <div class="play-button"></div>
+                                </div>
+                            </div>
+                            <div class="video-info">
+                                <h4>Keraya Neeranu Geetham</h4>
+                                <p>Malahari Ragam</p>
+                            </div>
+                        </div>
+                        <!-- Video Item 6 -->
+                        <div class="video-carousel-item">
+                            <div class="video-wrapper" data-video-id="HdW8G4ASx7E">
+                                <div class="player-placeholder"></div>
+                                <div class="video-overlay has-thumbnail">
+                                    <div class="play-button"></div>
+                                </div>
+                            </div>
+                            <div class="video-info">
+                                <h4>Shri Gananatha Geetham</h4>
+                                <p>Malahari Ragam</p>
+                            </div>
+                        </div>
+                         <!-- Video Item 7 -->
+                        <div class="video-carousel-item">
+                            <div class="video-wrapper" data-video-id="knhs_oo_dCo">
+                                <div class="player-placeholder"></div>
+                                <div class="video-overlay has-thumbnail">
+                                    <div class="play-button"></div>
+                                </div>
+                            </div>
+                            <div class="video-info">
+                                <h4>Kanta Judumi</h4>
+                                <p>Vachaspati Ragam</p>
+                            </div>
+                        </div>
+
+                    </div> <!-- end .video-carousel-slider -->
+
+                    <button class="carousel-nav prev" aria-label="Previous Demo Video"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-nav next" aria-label="Next Demo Video"><i class="fas fa-chevron-right"></i></button>
+
+                </div> <!-- end .carousel-wrapper -->
             </div>
         </section>
+        <!-- END: NEW Class Demonstrations Section -->
 
         <section id="praise">
             <div class="container">
                 <h2 class="section-title">PRAISE</h2>
+                
+                <!-- This new div will hold all the cards -->
                 <div class="testimonials-grid">
+
                     <div class="testimonial-card">
                         <img src="https://media.assettype.com/deccanherald%2Fimport%2Fsites%2Fdh%2Ffiles%2Farticle_images%2F2017%2F03%2F17%2F601842.jpg?w=400&auto=format%2Ccompress&fit=max" alt="Padmashri Vid. A. Kanyakumari">
                         <h4>Padmashri Vid. A. Kanyakumari</h4>
                         <blockquote>I found renewed inspiration through her performances on the radio. On April 2, 2005, I began training under Vid. A Kanyakumari. My entry into Kanyakumari Mam’s class was through a telephone audition, where I played Ninnukori Varṇam and Deva Deva Kalayamithe.</blockquote>
                     </div>
+
                     <div class="testimonial-card">
                         <img src="https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/mail_photos/father.jpeg?raw=true" alt="Student Name">
-                        <h4>Vidwan Shri Vasudeva Acharya</h4>
+                        <h4>Shri Vidwan Vasudeva Acharya</h4>
                         <blockquote>I started learning violin in the year 2000, at the age of 18, hailing from my hometown of Mangalore. My early training was under Shri Vidwan Vasudeva Acharya from Kasaragod.</blockquote>
                     </div>
-                </div>
+
+                </div> <!-- end .testimonials-grid -->
             </div>
         </section>
 
@@ -1082,203 +1052,140 @@
     </main>
     <footer>
         <p>Copyright &copy; 2025 Kumbhakodu School of Violin - All Rights Reserved.</p>
-        <p>Powered by <a href="https://wa.me/919551488550" class="logo-text">Ajay</a></p>
+        <p>Powered by <a href="https://wa.me/9199551488550" class="logo-text">Ajay</a></p>
     </footer>
-
-    <div id="cookie-banner">
+    <!-- <div id="cookie-banner">
         <p>This website uses cookies to ensure you get the best experience on our website.</p>
         <button id="cookie-accept-btn">Accept</button>
-    </div>
+    </div> -->
 
     <script src="https://www.youtube.com/iframe_api"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // --- Mobile Navigation Menu ---
+            // --- Horizontal/Vertical Sliding Navigation Menu ---
             const menuToggle = document.getElementById('menu-toggle');
             const mainNav = document.getElementById('main-nav');
+
             if (menuToggle && mainNav) {
                 menuToggle.addEventListener('click', () => {
-                    const isOpen = mainNav.classList.toggle('is-open');
-                    menuToggle.setAttribute('aria-expanded', isOpen);
+                    mainNav.classList.toggle('is-open');
                 });
             }
 
-            // --- Reusable Carousel Logic ---
-            const initCarousel = (carouselContainer) => {
-                const track = carouselContainer.querySelector('.carousel-track');
-                const slides = Array.from(track.children);
-                const nextButton = carouselContainer.querySelector('.next-btn');
-                const prevButton = carouselContainer.querySelector('.prev-btn');
-                const carouselWrapper = carouselContainer.querySelector('.carousel-wrapper');
+            // --- Existing Gallery Slider Script ---
+            document.querySelectorAll('.gallery-container').forEach(galleryContainer => {
+                const slider = galleryContainer.querySelector('.gallery-slider');
+                const slides = galleryContainer.querySelectorAll('.gallery-slider img');
+                const prevBtn = galleryContainer.querySelector('.prev-btn');
+                const nextBtn = galleryContainer.querySelector('.next-btn');
 
-                if (!track || slides.length === 0) return;
+                if (slider && slides.length > 0 && prevBtn && nextBtn) {
+                    let currentIndex = 0;
 
-                let isDragging = false,
-                    startPos = 0,
-                    currentTranslate = 0,
-                    prevTranslate = 0,
-                    animationID,
-                    currentIndex = 0;
-
-                const setCarouselPosition = () => {
-                    track.style.transform = `translateX(${currentTranslate}px)`;
-                };
-
-                const getPositionX = (event) => {
-                    return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
-                };
-
-                const animation = () => {
-                    setCarouselPosition();
-                    if (isDragging) requestAnimationFrame(animation);
-                };
-
-                const touchStart = (event) => {
-                    startPos = getPositionX(event);
-                    isDragging = true;
-                    animationID = requestAnimationFrame(animation);
-                    track.classList.add('is-dragging');
-                };
-
-                const touchMove = (event) => {
-                    if (isDragging) {
-                        const currentPosition = getPositionX(event);
-                        currentTranslate = prevTranslate + currentPosition - startPos;
+                    function goToSlide(index) {
+                        if (index < 0) {
+                            index = slides.length - 1;
+                        } else if (index >= slides.length) {
+                            index = 0;
+                        }
+                        slider.style.transform = `translateX(-${index * 100}%)`;
+                        currentIndex = index;
                     }
-                };
+
+                    nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+                    prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+
+                    // Set up an independent autoplay for each gallery
+                    setInterval(() => {
+                        goToSlide(currentIndex + 1);
+                    }, 5000 + Math.random() * 1000); // Stagger autoplays slightly
+                }
+            });
+
+            // --- NEW: Video Carousel Script ---
+            const carouselSection = document.querySelector('#demos');
+            if (carouselSection) {
+                const slider = carouselSection.querySelector('.video-carousel-slider');
+                const items = carouselSection.querySelectorAll('.video-carousel-item');
+                const prevBtn = carouselSection.querySelector('.carousel-nav.prev');
+                const nextBtn = carouselSection.querySelector('.carousel-nav.next');
                 
-                const touchEnd = () => {
-                    isDragging = false;
-                    cancelAnimationFrame(animationID);
-                    
-                    const movedBy = currentTranslate - prevTranslate;
-                    const slideWidth = slides[0].getBoundingClientRect().width;
+                if (slider && items.length > 0 && prevBtn && nextBtn) {
+                    let currentIndex = 0;
+                    const totalItems = items.length;
+                    let resizeTimeout;
 
-                    if (movedBy < -50 && currentIndex < slides.length - 1) { // Swipe sensitivity reduced
-                         goToNextSlide();
-                    } else if (movedBy > 50 && currentIndex > 0) {
-                        goToPrevSlide();
-                    } else {
-                        snapToPosition();
-                    }
-                    track.classList.remove('is-dragging');
-                };
+                    const getItemsPerPage = () => {
+                        if (window.innerWidth >= 992) return 3;
+                        if (window.innerWidth >= 768) return 2;
+                        return 1;
+                    };
 
-                 const updateDimensions = () => {
-                    snapToPosition();
-                    updateNavButtons();
-                };
+                    const updateCarouselState = () => {
+                        const itemsPerPage = getItemsPerPage();
+                        const itemWidth = items[0].getBoundingClientRect().width;
+                        
+                        slider.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
 
-                // OPTIMIZATION: Simplified carousel logic to be per-slide, not per-page for more robust behavior on resize.
-                const goToNextSlide = () => {
-                     const slidesPerPage = getSlidesPerPage();
-                     const maxIndex = slides.length - slidesPerPage;
-                     if (currentIndex < maxIndex) {
-                        currentIndex++;
-                        snapToPosition();
-                     } else {
-                        currentIndex = maxIndex;
-                        snapToPosition();
-                     }
-                };
+                        prevBtn.classList.toggle('disabled', currentIndex === 0);
+                        nextBtn.classList.toggle('disabled', currentIndex >= totalItems - itemsPerPage);
+                        
+                        prevBtn.disabled = (currentIndex === 0);
+                        nextBtn.disabled = (currentIndex >= totalItems - itemsPerPage);
+                    };
 
-                const goToPrevSlide = () => {
-                    if (currentIndex > 0) {
-                        currentIndex--;
-                        snapToPosition();
-                    }
-                };
-
-                const getSlidesPerPage = () => {
-                     if (slides.length === 0) return 1;
-                     const slideWidth = slides[0].getBoundingClientRect().width;
-                     const carouselWidth = carouselWrapper.getBoundingClientRect().width;
-                     return slideWidth > 0 ? Math.round(carouselWidth / slideWidth) : 1;
-                };
-
-                const snapToPosition = () => {
-                    const slideWidth = slides[0].getBoundingClientRect().width;
-                    const slidesPerPage = getSlidesPerPage();
-                    const maxIndex = slides.length - slidesPerPage;
-                    if (currentIndex > maxIndex) {
-                        currentIndex = maxIndex;
-                    }
-                    if (currentIndex < 0) {
-                        currentIndex = 0;
-                    }
-
-                    currentTranslate = currentIndex * -slideWidth;
-                    prevTranslate = currentTranslate;
-                    
-                    if (carouselContainer.closest('#demos')) {
-                        pauseAllYouTubeVideos();
-                    }
-                    
-                    track.style.transform = `translateX(${currentTranslate}px)`;
-                    updateNavButtons();
-                };
-
-                const updateNavButtons = () => {
-                    if(!prevButton || !nextButton) return;
-                    prevButton.classList.toggle('is-hidden', currentIndex === 0);
-                    const slidesPerPage = getSlidesPerPage();
-                    const isLastSlideVisible = currentIndex >= slides.length - slidesPerPage;
-                    nextButton.classList.toggle('is-hidden', isLastSlideVisible);
-                };
-
-                track.addEventListener('touchstart', touchStart);
-                track.addEventListener('touchend', touchEnd);
-                track.addEventListener('touchmove', touchMove);
-                track.addEventListener('mousedown', touchStart);
-                track.addEventListener('mouseup', touchEnd);
-                track.addEventListener('mouseleave', touchEnd);
-                track.addEventListener('mousemove', touchMove);
-                track.addEventListener('dragstart', (e) => e.preventDefault());
-
-
-                if (nextButton) nextButton.addEventListener('click', goToNextSlide);
-                if (prevButton) prevButton.addEventListener('click', goToPrevSlide);
-
-                window.addEventListener('resize', updateDimensions);
-                setTimeout(updateDimensions, 100);
-            };
-
-            document.querySelectorAll('.carousel-container').forEach(initCarousel);
-            
-            const cookieBanner = document.getElementById('cookie-banner');
-            if (cookieBanner) {
-                const acceptBtn = document.getElementById('cookie-accept-btn');
-                if (!localStorage.getItem('cookieConsent')) {
-                    cookieBanner.classList.add('show');
-                }
-                if (acceptBtn) {
-                    acceptBtn.addEventListener('click', () => {
-                        localStorage.setItem('cookieConsent', 'true');
-                        cookieBanner.classList.remove('show');
+                    nextBtn.addEventListener('click', () => {
+                        const itemsPerPage = getItemsPerPage();
+                        if (currentIndex < totalItems - itemsPerPage) {
+                            currentIndex++;
+                            updateCarouselState();
+                        }
                     });
+
+                    prevBtn.addEventListener('click', () => {
+                        if (currentIndex > 0) {
+                            currentIndex--;
+                            updateCarouselState();
+                        }
+                    });
+
+                    window.addEventListener('resize', () => {
+                        clearTimeout(resizeTimeout);
+                        resizeTimeout = setTimeout(() => {
+                            const itemsPerPage = getItemsPerPage();
+                            if (currentIndex > totalItems - itemsPerPage) {
+                                currentIndex = Math.max(0, totalItems - itemsPerPage);
+                            }
+                            slider.style.transition = 'none'; 
+                            updateCarouselState();
+                            setTimeout(() => {
+                                slider.style.transition = 'transform 0.5s ease-in-out';
+                            }, 50);
+                        }, 200);
+                    });
+                    
+                    updateCarouselState(); // Initial setup
                 }
+            }
+
+            // --- Existing Cookie Banner Script ---
+            const cookieBanner = document.getElementById('cookie-banner');
+            const acceptBtn = document.getElementById('cookie-accept-btn');
+            if (cookieBanner && !localStorage.getItem('cookieConsent')) {
+                cookieBanner.classList.add('show');
+            }
+            if (acceptBtn) {
+                acceptBtn.addEventListener('click', () => {
+                    localStorage.setItem('cookieConsent', 'true');
+                    cookieBanner.classList.remove('show');
+                });
             }
         });
 
-        // --- YouTube Player Logic ---
+        // --- FINAL YOUTUBE PLAYER SCRIPT (Unchanged) ---
         let players = {};
-
-        // Added this to handle the first non-lazy video
-        function setupFirstVideo() {
-            const firstIframe = document.querySelector('#demos iframe');
-            if(firstIframe && firstIframe.src.includes('youtube.com')) {
-                players['youtube-player-first'] = new YT.Player(firstIframe, {
-                    events: {
-                        'onStateChange': (event) => {
-                             // This is just to allow it to be controlled by pauseAllYouTubeVideos
-                        }
-                    }
-                });
-            }
-        }
-
         function onYouTubeIframeAPIReady() {
-            setupFirstVideo(); // Setup the first video
             const videoWrappers = document.querySelectorAll('.video-wrapper[data-video-id]');
             videoWrappers.forEach((wrapper, index) => {
                 const videoId = wrapper.dataset.videoId;
@@ -1288,54 +1195,50 @@
                 placeholder.id = playerId;
 
                 const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-                if(overlay) overlay.style.backgroundImage = `url('${thumbnailUrl}')`;
+                overlay.style.backgroundImage = `url('${thumbnailUrl}')`;
                 
-                players[playerId] = null; // Initialize as null
+                players[playerId] = new YT.Player(playerId, {
+                    videoId: videoId,
+                    playerVars: { 
+                        'controls': 0, 'rel': 0, 'modestbranding': 1, 
+                        'iv_load_policy': 3, 'disablekb': 1 
+                    },
+                    events: {
+                        'onReady': onPlayerReady,
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
 
                 wrapper.addEventListener('click', () => {
-                    if (!players[playerId]) { // Create player on first click
-                        players[playerId] = new YT.Player(playerId, {
-                            videoId: videoId,
-                            playerVars: { 'autoplay': 1, 'controls': 1, 'rel': 0, 'modestbranding': 1, 'iv_load_policy': 3 },
-                            events: { 'onReady': onPlayerReady, 'onStateChange': onPlayerStateChange }
-                        });
-                    } else { // Player exists, just play/pause
-                        const player = players[playerId];
+                    const player = players[playerId];
+                    if (player && typeof player.getPlayerState === 'function') {
                          const playerState = player.getPlayerState();
-                        if (playerState !== YT.PlayerState.PLAYING) {
+                        if (playerState === YT.PlayerState.PLAYING) {
+                            player.pauseVideo();
+                        } else {
                             player.playVideo();
                         }
                     }
-                }, { once: false }); // Allow multiple clicks for play/pause
+                });
             });
         }
-
         function onPlayerReady(event) {
-            const iframe = event.target.getIframe();
-            const wrapper = iframe.closest('.video-wrapper');
-            const overlay = wrapper.querySelector('.video-overlay');
-            if (overlay) overlay.classList.add('hidden');
+            event.target.getIframe().style.visibility = 'hidden';
         }
-
         function onPlayerStateChange(event) {
             const player = event.target;
             const iframe = player.getIframe();
             const wrapper = iframe.closest('.video-wrapper');
             const overlay = wrapper.querySelector('.video-overlay');
-
-            if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
-                if (overlay) overlay.classList.remove('hidden');
-            } else if (event.data === YT.PlayerState.PLAYING) {
-                if (overlay) overlay.classList.add('hidden');
+            if (event.data === YT.PlayerState.PLAYING) {
+                overlay.classList.add('hidden');
+                iframe.style.visibility = 'visible';
+            } 
+            else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+                overlay.classList.remove('hidden');
+                overlay.classList.add('has-thumbnail');
+                iframe.style.visibility = 'hidden';
             }
-        }
-        
-        function pauseAllYouTubeVideos() {
-            Object.values(players).forEach(player => {
-                if (player && typeof player.pauseVideo === 'function') {
-                    player.pauseVideo();
-                }
-            });
         }
     </script>
 </body>
