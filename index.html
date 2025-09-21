@@ -120,7 +120,7 @@
             left: 0;         /* Stretches it to the left edge */
             right: 0;        /* Stretches it to the right edge */
             z-index: 1000;   /* Ensures it stays on top of other content */
-            padding: 7px 0 0 0;
+            /* padding: 7px 0 0 0; */
             background: #fff; 
         }
         
@@ -145,14 +145,15 @@
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.5rem;
             flex-shrink: 1; 
         }
 
         .logo-container .logo {
-            height: 50px;
+            height: 80px;
             width: auto;
             flex-shrink: 0;
+            padding: 7px 0 0 0;
         }
 
         #main-header h1 {
