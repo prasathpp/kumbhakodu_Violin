@@ -115,17 +115,13 @@
         /* --- 1. Header Section --- */
         #main-header {
             /* --- THE FIX --- */
-            position: fixed; /* Takes it out of the normal flow */
+            position: sticky; /* Takes it out of the normal flow */
             top: 0;          /* Pins it to the top of the viewport */
             left: 0;         /* Stretches it to the left edge */
             right: 0;        /* Stretches it to the right edge */
             z-index: 1000;   /* Ensures it stays on top of other content */
             /* padding: 7px 0 0 0; */
             background: #fff; 
-        }
-        
-        main {
-            padding-top: 90px; /* Prevents content from hiding under the fixed header */
         }
         
         .logo-text {
@@ -221,7 +217,7 @@
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://github.com/prasathpp/kumbhakodu_Violin/blob/main/src/mail_photos/cover.png?raw=true');
             background-size: cover;
             background-position: center;
-            min-height: 80vh;
+            /* min-height: 80vh; */
             display: flex;
             align-items: center;
             padding: 4rem 2rem;
@@ -724,35 +720,36 @@
     </style>
 </head>
 <body>
-    <header id="main-header">
-        <div class="header-inner">
-            <div class="logo-container">
-                <a href="index.html" class="logo-text">
-                    <img src="https://raw.githubusercontent.com/prasathpp/kumbhakodu_Violin/main/src/mail_photos/yellowLogo.jpeg" alt="Violin Logo" class="logo">
-                </a>
-                <h1>
-                    <a href="index.html" class="logo-text">Kumbhakodu School of Violin</a>
-                </h1>
-            </div>
-            <div class="nav-area">
-                <nav id="main-nav">
-                    <ul>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#gallery">Gallery</a></li>
-                        <li><a href="#tutor">Tutor</a></li>
-                        <li><a href="#demos">Demos</a></li>
-                        <li><a href="#praise">Praise</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </nav>
-                <button id="menu-toggle" aria-label="Open Navigation Menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-    </header>
+    
 
     <main>
+        <header id="main-header">
+            <div class="header-inner">
+                <div class="logo-container">
+                    <a href="index.html" class="logo-text">
+                        <img src="https://raw.githubusercontent.com/prasathpp/kumbhakodu_Violin/main/src/mail_photos/yellowLogo.jpeg" alt="Violin Logo" class="logo">
+                    </a>
+                    <h1>
+                        <a href="index.html" class="logo-text">Kumbhakodu School of Violin</a>
+                    </h1>
+                </div>
+                <div class="nav-area">
+                    <nav id="main-nav">
+                        <ul>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#gallery">Gallery</a></li>
+                            <li><a href="#tutor">Tutor</a></li>
+                            <li><a href="#demos">Demos</a></li>
+                            <li><a href="#praise">Praise</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </nav>
+                    <button id="menu-toggle" aria-label="Open Navigation Menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
         <section id="hero">
             <div class="hero-content">
                 <div class="hero-text">
@@ -1211,5 +1208,6 @@
             }
         }
     </script>
+
 </body>
 </html>
