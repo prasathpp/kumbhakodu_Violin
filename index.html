@@ -1152,6 +1152,36 @@
 
         // --- FINAL YOUTUBE PLAYER SCRIPT (Unchanged) ---
         let players = {};
+        function setupVisibilityObserver() {
+            const options = {
+                root: null,       // viewport
+                threshold: 0.25   // % of video visible before considered "in view"
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                const wrapper = entry.target;
+                const iframe = wrapper.querySelector("iframe");
+                if (!iframe) return;
+
+                const playerId = iframe.id;
+                const player = players[playerId];
+                
+                if (player && typeof player.getPlayerState === "function") {
+                    const state = player.getPlayerState();
+                    
+                    if (!entry.isIntersecting && state === YT.PlayerState.PLAYING) {
+                    player.pauseVideo(); // Pause when leaving viewport
+                    }
+                }
+                });
+            }, options);
+
+            document.querySelectorAll(".video-wrapper[data-video-id]").forEach(wrapper => {
+                observer.observe(wrapper);
+            });
+            }
+
         function onYouTubeIframeAPIReady() {
             const videoWrappers = document.querySelectorAll('.video-wrapper[data-video-id]');
             videoWrappers.forEach((wrapper, index) => {
@@ -1188,6 +1218,7 @@
                     }
                 });
             });
+            setupVisibilityObserver();
         }
         function onPlayerReady(event) {
             event.target.getIframe().style.visibility = 'hidden';
