@@ -665,28 +665,7 @@
         
         footer p { margin-bottom: 0.5rem; }
 
-        /* --- Cookie Banner (styles unchanged) --- */
-        #cookie-banner {
-            position: fixed; bottom: -100%; left: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(5px);
-            color: white; padding: 1rem;
-            text-align: center; z-index: 2000;
-            transition: bottom 0.5s ease-in-out;
-            display: flex; justify-content: center;
-            align-items: center; gap: 1rem;
-        }
-        
-        #cookie-banner.show { bottom: 0; }
-        
-        #cookie-accept-btn {
-            background: var(--primary-color);
-            color: white; border: none;
-            padding: 0.5rem 1.5rem;
-            border-radius: 5px; cursor: pointer;
-        }
-        
+                
         /* --- Responsive Design --- */
         @media(max-width: 768px) {
             .container { padding: 0 1rem; }
@@ -734,7 +713,7 @@
             
             .testimonials-grid { flex-direction: column; gap: 1.5rem; }
             .social-icons a { font-size: 2rem; margin: 0 1rem; }
-            #cookie-banner { flex-direction: column; }
+            
             
             /* Demos section responsive */
             .carousel-wrapper { padding: 0 40px; }
@@ -1061,10 +1040,6 @@
         <p>Copyright &copy; 2025 Kumbhakodu School of Violin - All Rights Reserved.</p>
         <p>Powered by <a href="https://wa.me/919551488550" class="logo-text">Ajay</a></p>
     </footer>
-    <!-- <div id="cookie-banner">
-        <p>This website uses cookies to ensure you get the best experience on our website.</p>
-        <button id="cookie-accept-btn">Accept</button>
-    </div> -->
 
     <script src="https://www.youtube.com/iframe_api"></script>
 
@@ -1176,18 +1151,6 @@
                 }
             }
 
-            // --- Existing Cookie Banner Script ---
-            const cookieBanner = document.getElementById('cookie-banner');
-            const acceptBtn = document.getElementById('cookie-accept-btn');
-            if (cookieBanner && !localStorage.getItem('cookieConsent')) {
-                cookieBanner.classList.add('show');
-            }
-            if (acceptBtn) {
-                acceptBtn.addEventListener('click', () => {
-                    localStorage.setItem('cookieConsent', 'true');
-                    cookieBanner.classList.remove('show');
-                });
-            }
         });
 
         // --- FINAL YOUTUBE PLAYER SCRIPT (Unchanged) ---
