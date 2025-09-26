@@ -283,7 +283,7 @@
         
         /* --- 3. About Us Section --- */
         #about {
-            background: transparent; /* Let the body background show through */
+            background: #7a494940; /* Let the body background show through */
         }
         
         #about p.intro {
@@ -600,6 +600,63 @@
             text-align: left;
         }
 
+        /* --- NEW: 7b. Our Community Section --- */
+        .community-grid {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            align-items: stretch; /* Ensures cards are same height if they wrap */
+        }
+
+        .community-card {
+            background: #fff; /* White cards on cream background */
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            text-align: center;
+            flex: 1 1 340px; /* Grow, shrink, and base width */
+            max-width: 400px;
+            /* display: flex; */
+            flex-direction: column;
+        }
+
+        .community-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .community-card h3 {
+            font-family: var(--font-family-headings);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        .community-card .card-intro {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 1.5rem;
+            flex-grow: 1; /* Pushes the list down if content is short */
+        }
+
+        .community-card ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        .community-card ul li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            color: var(--text-color);
+        }
+
+        .community-card ul li:last-child {
+            border-bottom: none;
+        }
+
         /* --- 8. Contact Us Section --- */
         #contact {
              background: #fff; /* White background */
@@ -717,6 +774,20 @@
             .carousel-nav.prev { left: 5px; }
             .carousel-nav.next { right: 5px; }
         }
+        /* --- NEW: Style for multi-column list in Community Section --- */
+        @media (min-width: 992px) {
+            .multi-column-list {
+                column-count: 2;
+                column-gap: 2rem;
+            }
+            .multi-column-list li {
+                border-bottom: none; /* Remove separator line for a cleaner look */
+                padding: 0.3rem 0;   /* Adjust padding for columns */
+                -webkit-column-break-inside: avoid; /* Prevents an item from breaking across columns */
+                page-break-inside: avoid;
+                break-inside: avoid;
+            }
+        }
     </style>
 </head>
 <body>
@@ -787,15 +858,18 @@
             <div class="container">
                 <h2 class="section-title">About the Tutor's Musical Journey</h2>
 
-                <p>My inspiration to learn the violin began with Vid. Dr. Vidhyabhushana whose music deeply moved me.
-                Later, I found renewed inspiration through Padma Shri awardee Vid. A Kanyakumari by listening to her performances on the radio. 
-                Encouraged by Shri Natraja Bhat and Professor Shrikrishna Bhat (Madras University), I took a significant step forward in my musical journey.
-                On April 2, 2005, I began training under Vid. A Kanyakumari. With the guidance of Natraja Bhat, I moved to Chennai to continue my learning, 
-                staying at Shankara Gurukulam, Abhiramapuram. I am grateful to Shri Krishnamurty Iyer and Shri Ramachandra Iyer, for kindly offering me accommodation 
-                at no cost. I also received support from Smt Yogam Santhanam and Shri Santhanam, who helped set up the necessary teaching infrastructure.
-                Over time, I learned intricacies of the instrument from Rajiv Mukundan, and spent many hours practicing with Tirumarugal Brothers and Smt Anusha Shreeram. 
-                I also had the opportunity to collaborate frequently with A. Shyam Prakash, son of ShriKrishna Bhat, whose singing enriched my musical expression.</p>
-                <a href="#praise" class="btn btn-primary">Find out more</a>
+                <p>
+                    My inspiration to learn the violin began with Vid. Dr. Vidhyabhushana, whose music deeply moved me. Later, I found renewed inspiration through Padma Shri awardee Vid. A. Kanyakumari by listening to her performances on the radio.<br><br>
+
+                    Encouraged by Shri Natraja Bhat and Professor Shrikrishna Bhat (Madras University), I took a significant step forward in my musical journey. On April 2, 2005, I began training under Vid. A. Kanyakumari. With the guidance of Shri Natraja Bhat, I moved to Chennai to continue my learning, staying at Shankara Gurukulam, Abhiramapuram.<br><br>
+
+                    I am deeply grateful to Shri Krishnamurty Iyer and Shri Ramachandra Iyer for kindly offering me accommodation at no cost. Special thanks also go to H. K. Subramanya Sharma for his valuable guidance. I received support from Smt. Yogam Santhanam and Shri Santhanam, who helped establish the teaching infrastructure needed for my training.<br><br>
+
+                    Over time, I learned the intricacies of the instrument from Rajiv Mukundan, and spent countless hours practicing with the Tirumarugal Brothers and Smt. Anusha Shreeram. I also had the privilege to collaborate frequently with A. Shyam Prakash, son of Professor Shrikrishna Bhat, whose singing enriched my musical expression.
+
+                    I'm also pursuing sound engineering from Shri L Babaprasad.
+                </p>
+                <a href="#community" class="btn btn-primary">Find out more</a>
             </div>
         </section>
 
@@ -1006,6 +1080,70 @@
                 </div> <!-- end .testimonials-grid -->
             </div>
         </section>
+
+        <!-- START: NEW Our Community Section -->
+        <section id="community" style="background-color: transparent;">
+            <div class="container">
+                <h2 class="section-title">Our Community</h2>
+                
+                <div class="community-grid">
+
+                    <!-- Card 1: Esteemed Learners -->
+                    <div class="community-card">
+                        <i class="fas fa-star"></i>
+                        <h3>Our Esteemed Learners</h3>
+                        <p class="card-intro">We are honored to have learners from diverse walks of life who inspire us with their dedication to music:</p>
+                        <ul>
+                            <li><strong>Justice Madhivanan T</strong> – Judge, High Court</li>
+                            <li><strong>Mr. Dasarathan</strong> – Commander, Indian Navy</li>
+                            <li><strong>Mr. Kumar</strong> – Chief Secretary’s Office, Personal Assistant to the Hon’ble Chief Minister of Tamil Nadu</li>
+                            <li><strong>Ms. Aparna Lakshmi Narayanan</strong> – Customs Officer</li>
+                            <li><strong>Dr. Deepa Tyagaraja Murthy</strong> – Specialist, SAI Women’s Clinic, Adyar</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 2: Advanced Learners -->
+                    <div class="community-card">
+                        <i class="fas fa-user-graduate"></i>
+                        <h3>Advanced & Professional Learners</h3>
+                        <p class="card-intro">We are privileged to guide accomplished violinists who continue to refine their art with us:</p>
+                        <ul class="multi-column-list">
+                            <li>Nishanth T</li>
+                            <li>Sundararajan</li>
+                            <li>Swetha Suresh</li>
+                            <li>Shreya Suresh</li>
+                            <li>Sesha Sai R</li>
+                            <li>Medha H</li>
+                            <li>Swetha S</li>
+                            <li>Vikram S</li>
+                            <li>Shilpa Venkatesh</li>
+                            <li>Shivaram Suresh</li>
+                            <li>Ashwin Iyer</li>
+                            <li>Vasudha Sakolkar</li>
+                            <li>Shambhavi R</li>
+                            <li>Lasya</li>
+                            <li>Anirudh</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Card 3: Performing Artistes -->
+                    <div class="community-card">
+                        <i class="fas fa-violin"></i>
+                        <h3>Performing Artists</h3>
+                        <p class="card-intro">Among our learners are artistes who accompany leading stalwarts of Carnatic music on stage:</p>
+                        <ul>
+                            <li>Kamala Kiran Vinjamuri</li>
+                            <li>Sai Rakshit</li>
+                            <li>Janardhan Srinath</li>
+                            <!-- <li>Physically challenged person - Jyothi Kalai - Blind</li> -->
+                            <!-- <li>NRI s or learing through online from various countries</li> -->
+                        </ul>
+                    </div>
+
+                </div> <!-- end .community-grid -->
+            </div>
+        </section>
+        <!-- END: NEW Our Community Section -->
 
         <section id="contact">
             <div class="container">
