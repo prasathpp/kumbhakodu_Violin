@@ -1180,19 +1180,44 @@
     <script src="https://www.youtube.com/iframe_api"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // --- Horizontal/Vertical Sliding Navigation Menu ---
-            const menuToggle = document.getElementById('menu-toggle');
-            const mainNav = document.getElementById('main-nav');
+                document.addEventListener('DOMContentLoaded', function() {
+                // --- NEW & IMPROVED: Smart Navigation Menu ---
+                const menuToggle = document.getElementById('menu-toggle');
+                const mainNav = document.getElementById('main-nav');
+                const mainHeader = document.getElementById('main-header'); // The entire header
+                const navLinks = mainNav.querySelectorAll('a'); // All links inside the nav
 
-            if (menuToggle && mainNav) {
-                menuToggle.addEventListener('click', () => {
-                    mainNav.classList.toggle('is-open');
-                });
-            }
+                if (menuToggle && mainNav && mainHeader) {
+                    // 1. Click to toggle (for mobile and accessibility)
+                    menuToggle.addEventListener('click', () => {
+                        mainNav.classList.toggle('is-open');
+                    });
 
-            // --- Existing Gallery Slider Script ---
-            document.querySelectorAll('.gallery-container').forEach(galleryContainer => {
+                    // 2. Hover to open/close (for desktop users)
+                    // We add this to the whole header so you can move your mouse to the links
+                    mainHeader.addEventListener('mouseenter', () => {
+                        // Only activate hover on wider screens
+                        if (window.innerWidth > 768) { 
+                            mainNav.classList.add('is-open');
+                        }
+                    });
+                    
+                    mainHeader.addEventListener('mouseleave', () => {
+                        if (window.innerWidth > 768) {
+                            mainNav.classList.remove('is-open');
+                        }
+                    });
+
+                    // 3. Click any nav link to close the menu
+                    navLinks.forEach(link => {
+                        link.addEventListener('click', () => {
+                            mainNav.classList.remove('is-open');
+                        });
+                    });
+                }
+
+                // --- Existing Gallery Slider Script ---
+                document.querySelectorAll('.gallery-container').forEach(galleryContainer => {
                 const slider = galleryContainer.querySelector('.gallery-slider');
                 const slides = galleryContainer.querySelectorAll('.gallery-slider img');
                 const prevBtn = galleryContainer.querySelector('.prev-btn');
